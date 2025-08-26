@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -39,17 +40,21 @@ export default function Login() {
         <div className="col-md-6 col-lg-4 bg-white p-5 shadow rounded">
           {/* Logo */}
           <div className="text-center mb-4">
-            <img src="/logo.png" alt="Green Biller" style={{ maxWidth: "180px" }} />
+            <img src={logo} alt="Green Biller" style={{ maxWidth: "180px" }} />
           </div>
 
           {/* Title */}
           <h3 className="fw-bold">Sign In</h3>
-          <p className="text-muted">Access the Green Biller panel using your Mobile.</p>
+          <p className="text-muted">
+            Access the Green Biller panel using your Mobile.
+          </p>
 
           {/* Form */}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email Address</label>
+              <label htmlFor="email" className="form-label">
+                Email Address
+              </label>
               <input
                 type="email"
                 className="form-control"
@@ -62,7 +67,9 @@ export default function Login() {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">Password</label>
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
               <input
                 type="password"
                 className="form-control"
@@ -76,7 +83,11 @@ export default function Login() {
 
             {error && <p className="text-danger">{error}</p>}
 
-            <button type="submit" className="btn w-100 text-white" style={{ backgroundColor: "#ff9933" }}>
+            <button
+              type="submit"
+              className="btn w-100 text-white"
+              style={{ backgroundColor: "#ff9933" }}
+            >
               Sign In
             </button>
           </form>
@@ -84,19 +95,22 @@ export default function Login() {
           {/* Register Link */}
           <div className="mt-3 text-center">
             <p className="mb-0">
-              New on our platform? <a href="#" className="fw-bold text-decoration-none">Create an account</a>
+              New on our platform?{" "}
+              <a href="#" className="fw-bold text-decoration-none">
+                Create an account
+              </a>
             </p>
           </div>
 
           {/* Divider */}
-          <div className="d-flex align-items-center my-3">
+          {/* <div className="d-flex align-items-center my-3">
             <hr className="flex-grow-1" />
             <span className="mx-2 text-muted">OR</span>
             <hr className="flex-grow-1" />
-          </div>
+          </div> */}
 
           {/* Social Logins */}
-          <div className="d-flex gap-2">
+          {/* <div className="d-flex gap-2">
             <button className="btn btn-primary w-100" type="button">
               <i className="fab fa-facebook-f"></i>
             </button>
@@ -106,7 +120,7 @@ export default function Login() {
             <button className="btn btn-dark w-100" type="button">
               <i className="fab fa-apple"></i>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
+// routes/routes.jsx
 import { createBrowserRouter } from "react-router-dom";
 
 import DashboardPage from "../pages/DashboardPage";
+import SalesPage from "../pages/SalesPage"; // Import the SalesPage
 import MainLayout from "../layouts/MainLayout";
 import LoginPage from "../pages/Login";
 import AuthLayout from "../layouts/AuthLayout";
@@ -17,6 +19,15 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
+            element: <DashboardPage />,
+          },
+          {
+            path: "sales", // Add the sales route
+            element: <SalesPage />,
+          },
+          {
+            // Redirect to dashboard by default
+            index: true,
             element: <DashboardPage />,
           },
         ],
