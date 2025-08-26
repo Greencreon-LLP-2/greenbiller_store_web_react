@@ -1,5 +1,7 @@
 // pages/SalesPage.jsx
 import React from "react";
+import "../styles/SalesPage.css";
+
 
 const SalesPage = () => {
   return (

@@ -1,6 +1,8 @@
 // components/Sidebar.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../styles/Sidebar.css";
+import logo1 from "../assets/logo1.png";
 
 const Sidebar = () => {
   const navItems = [
@@ -10,7 +12,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <h1 className="sidebar-title">Green Biller</h1>
+      <img src={logo1} alt="Green Biller Logo" className="sidebar-logo" />
       <nav className="sidebar-nav">
         {navItems.map((item) => (
           <NavLink

@@ -1,0 +1,7 @@
+.sales-content {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+  min-height: 300px;
+}
