@@ -2,11 +2,16 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import DashboardPage from "../pages/DashboardPage";
-import SalesPage from "../pages/SalesPage"; // Import the SalesPage
+import SalesPage from "../pages/SalesPage";
 import MainLayout from "../layouts/MainLayout";
 import LoginPage from "../pages/Login";
 import AuthLayout from "../layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
+// Import the new pages
+import CustomersPage from "../pages/CustomersPage";
+import SuppliersPage from "../pages/SuppliersPage";
+import UsersPage from "../pages/UsersPage";
+import AddSales from "../pages/AddnewSales";
 
 export const router = createBrowserRouter([
   {
@@ -22,8 +27,29 @@ export const router = createBrowserRouter([
             element: <DashboardPage />,
           },
           {
-            path: "sales", // Add the sales route
+            path: "sales",
             element: <SalesPage />,
+          },
+          {
+            path: "sales/add",
+            element: <AddSales />,
+          },
+          {
+            path: "contacts",
+            children: [
+              {
+                path: "customers",
+                element: <CustomersPage />,
+              },
+              {
+                path: "suppliers",
+                element: <SuppliersPage />,
+              },
+              {
+                path: "users",
+                element: <UsersPage />,
+              },
+            ],
           },
           {
             // Redirect to dashboard by default
