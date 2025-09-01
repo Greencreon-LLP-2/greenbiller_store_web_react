@@ -1,6 +1,7 @@
 // pages/CustomerPage.jsx
 import React, { useState } from "react";
 import "../styles/CustomersPage.css";
+import AddNewCustomer from "./AddNewCustomer";
 
 const CustomersPage = () => {
   const [customers, setCustomers] = useState([
@@ -103,6 +104,10 @@ const CustomersPage = () => {
     setIsModalOpen(false);
   };
 
+  const handleAddCustomer = (newCustomer) => {
+    setCustomers([...customers, newCustomer]);
+  };
+
   return (
     <div className="sales-page">
       <h2 className="title">Customers</h2>
@@ -114,7 +119,12 @@ const CustomersPage = () => {
         <button className="btn print">Print</button>
         <button className="btn refresh">⟳</button>
         <button className="btn collapse">⌄</button>
-        <button className="btn add">+ Add New Customer</button>
+        <button 
+          className="btn add" 
+          onClick={() => setIsModalOpen(true)} // Open modal on click
+        >
+          + Add New Customer
+        </button>      
       </div>
       
       <div className="sales-content">
@@ -232,6 +242,11 @@ const CustomersPage = () => {
           </div>
         </div>
       </div>
+      <AddNewCustomer 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddCustomer={handleAddCustomer}
+      />
     </div>
   );
 };

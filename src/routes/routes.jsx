@@ -42,6 +42,10 @@ export const router = createBrowserRouter([
                 element: <CustomersPage />,
               },
               {
+                path: "customers/add",
+                element: <AddCustomer />, // You would need to create this page component
+              },
+              {
                 path: "suppliers",
                 element: <SuppliersPage />,
               },
