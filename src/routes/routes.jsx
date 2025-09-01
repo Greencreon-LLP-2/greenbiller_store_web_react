@@ -12,6 +12,7 @@ import CustomersPage from "../pages/CustomersPage";
 import SuppliersPage from "../pages/SuppliersPage";
 import UsersPage from "../pages/UsersPage";
 import AddSales from "../pages/AddnewSales";
+import AddNewCustomer from "../pages/AddNewCustomer";
 
 export const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
               },
               {
                 path: "customers/add",
-                element: <AddCustomer />, // You would need to create this page component
+                element: <AddNewCustomer />, // You would need to create this page component
               },
               {
                 path: "suppliers",
