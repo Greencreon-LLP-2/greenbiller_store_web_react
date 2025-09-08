@@ -1,13 +1,15 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'nodejs'   
+
+    environment {
+        APP_NAME = "greenbiller_store_web_react"
+        APP_DIR = "/var/www/react-app-3011"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'Devops_Pankaj', url: 'https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git/'
+                git branch: 'react_cicd_pankaj', url: 'https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git'
             }
         }
 
@@ -19,39 +21,32 @@ pipeline {
 
         stage('Build React App') {
             steps {
-                sh 'npm run build --verbose'
+                sh 'npm run build'
             }
         }
 
         stage('Deploy to Nginx') {
             steps {
-                script {
-                    sh '''
-                    DEPLOY_DIR=/var/www/react-app
+                sh '''
+                # Remove old build
+                rm -rf ${APP_DIR}/*
 
-                    # Create deploy directory if not exists
-                    sudo mkdir -p $DEPLOY_DIR
+                # Copy new build
+                cp -r dist/* ${APP_DIR}/
 
-                    # Remove old build
-                    sudo rm -rf $DEPLOY_DIR/*
-
-                    # Copy new build
-                    sudo cp -r dist/* $DEPLOY_DIR/
-
-                    # Restart nginx to load new files
-                    sudo systemctl restart nginx
-                    '''
-                }
+                # Reload Nginx
+                sudo systemctl reload nginx
+                '''
             }
         }
     }
 
     post {
         success {
-            echo "✅ React app deployed successfully on http://<jenkins-server-ip>/"
+            echo "✅ React app deployed successfully via Nginx on http://<server-ip>:3011"
         }
         failure {
-            echo "❌ Pipeline failed."
+            echo "❌ Deployment failed. Check logs."
         }
     }
 }
