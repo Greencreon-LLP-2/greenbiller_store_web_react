@@ -1,0 +1,196 @@
+/* Page container */
+.sup-page {
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Page Header */
+.sup-header h4 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.sup-header p {
+  margin: 0;
+  color: #666;
+}
+
+/* Header actions */
+.sup-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sup-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+.sup-btn-primary {
+  background: #ff7f50;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Search box */
+.sup-search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 10px;
+  background: #fff;
+}
+
+.sup-search-box input {
+  border: none;
+  outline: none;
+  margin-left: 8px;
+  width: 200px;
+}
+
+.sup-search-icon {
+  color: #888;
+}
+
+.sup-btn-filter {
+  background: #ff7f50;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sup-sort-dropdown {
+  border-radius: 6px;
+  padding: 6px;
+}
+
+/* Supplier image inside table */
+.sup-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Supplier Name + Image cell */
+.sup-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Action buttons */
+.sup-action-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.sup-btn-icon {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Action colors */
+.sup-btn-icon.sup-info {
+  color: #3b82f6; /* Blue */
+}
+.sup-btn-icon.sup-edit {
+  color: #f59e0b; /* Orange */
+}
+.sup-btn-icon.sup-danger {
+  color: #ef4444; /* Red */
+}
+
+/* Card */
+.sup-card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sup-card-body {
+  padding: 20px;
+}
+
+/* Filters row */
+.sup-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sup-filter-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ✅ DataTable overrides */
+.rdt_TableRow {
+  background-color: transparent !important;
+  min-height: 48px;
+  border-bottom: 1px solid #ddd;
+}
+
+.rdt_TableCell {
+  padding: 16px 12px;
+  font-size: 14px;
+}
+
+.rdt_TableCol {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.rdt_TableCol input[type="checkbox"],
+.rdt_TableCell input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+/* Header container */
+.sup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Header actions aligned to right */
+.sup-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto; /* Push to the right */
+}
+
+.sup-btn-icon:hover {
+  background-color: #f3f4f6;
+  color: #ff7f50;
+  transform: translateY(-2px);
+}
+.sup-btn-primary:hover {
+  background-color: #ff6333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 127, 80, 0.35);
+}

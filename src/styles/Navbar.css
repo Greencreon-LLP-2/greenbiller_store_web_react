@@ -97,3 +97,85 @@
   background-color: #eaeaea;
   margin: 4px 0;
 }
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-right: 20px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: #f44336;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  padding: 2px 5px;
+}
+
+/* Panels */
+.dropdown-panel {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  min-width: 220px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  z-index: 200;
+  padding: 10px;
+}
+
+.search-panel input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.clear-icon {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 12px;
+}
+
+.notification-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-panel li {
+  padding: 8px 4px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.notification-panel li small {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.panel-header {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.panel-footer {
+  text-align: center;
+  padding-top: 6px;
+}

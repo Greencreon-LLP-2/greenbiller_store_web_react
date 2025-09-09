@@ -190,8 +190,8 @@ const CustomersPage = () => {
                       </span>
                     </td>
                     <td>
-                      <button className="action-btn">💶</button>
-                      <button className="action-btn">💷</button>
+                      <button className="action-btn"><i class="bi bi-pencil-square"></i></button>
+                      <button className="action-btn"><i class="bi bi-trash"></i></button>
                     </td>
                   </tr>
                 ))

@@ -13,6 +13,8 @@ import SuppliersPage from "../pages/SuppliersPage";
 import UsersPage from "../pages/UsersPage";
 import AddSales from "../pages/AddnewSales";
 import AddNewCustomer from "../pages/AddNewCustomer";
+import AddUserPage from "../pages/AddUserPage";
+import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,13 @@ export const router = createBrowserRouter([
             path: "dashboard",
             element: <DashboardPage />,
           },
+           {
+            path: "users",
+            children: [
+              { index: true, element: <UsersPage /> },
+              { path: "add", element: <AddUserPage /> },
+            ],
+          },
           {
             path: "sales",
             element: <SalesPage />,
@@ -35,6 +44,7 @@ export const router = createBrowserRouter([
             path: "sales/add",
             element: <AddSales />,
           },
+          { path: "/profile", element: <Profile /> },
           {
             path: "contacts",
             children: [
@@ -49,10 +59,6 @@ export const router = createBrowserRouter([
               {
                 path: "suppliers",
                 element: <SuppliersPage />,
-              },
-              {
-                path: "users",
-                element: <UsersPage />,
               },
             ],
           },

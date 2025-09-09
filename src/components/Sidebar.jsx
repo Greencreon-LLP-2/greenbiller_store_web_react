@@ -20,6 +20,11 @@ const Sidebar = () => {
         />
       ),
     },
+    {
+    path: "/users",   // <-- direct link
+    label: "Users",
+    icon: <i className="bi bi-people"></i>, // pick any Bootstrap icon you like
+  },
     { path: "/sales", label: "Sales", icon: <i className="bi bi-cart"></i> },
     {
       type: "dropdown",
