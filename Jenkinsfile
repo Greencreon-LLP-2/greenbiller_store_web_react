@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'react_cicd_pankaj', url: 'https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git'
+                git branch: 'main', url: 'https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git'
             }
         }
 
