@@ -3,40 +3,45 @@ pipeline {
 
     environment {
         APP_NAME = "greenbiller_store_web_react"
-        APP_DIR = "/var/www/react-app-3011"
+        CLONE_DIR = "/root/savio/${APP_NAME}"
+        APP_DIR = "/var/www/static_html/${APP_NAME}"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git'
+                dir("${CLONE_DIR}") {
+                    git branch: 'main', url: 'https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git'
+                }
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                dir("${CLONE_DIR}") {
+                    sh 'npm install'
+                }
             }
         }
 
         stage('Build React App') {
             steps {
-                sh 'npm run build'
+                dir("${CLONE_DIR}") {
+                    sh 'npm run build'
+                }
             }
         }
 
         stage('Deploy to Nginx') {
             steps {
-                sh '''
-                # Remove old build
-                rm -rf ${APP_DIR}/*
-
-                # Copy new build
-                cp -r dist/* ${APP_DIR}/
-
-                # Reload Nginx
-                sudo systemctl reload nginx
-                '''
+                dir("${CLONE_DIR}") {
+                    sh '''
+                    sudo mkdir -p ${APP_DIR}
+                    sudo rm -rf ${APP_DIR}/*
+                    sudo cp -r dist/* ${APP_DIR}/
+                    sudo systemctl reload nginx
+                    '''
+                }
             }
         }
     }
