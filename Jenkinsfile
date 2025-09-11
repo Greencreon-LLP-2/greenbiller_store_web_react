@@ -3,16 +3,20 @@ pipeline {
 
     environment {
         APP_NAME = "greenbiller_store_web_react"
-        CLONE_DIR = "/savio/${APP_NAME}"
-        APP_DIR = "/var/www/static_html/${APP_NAME}"
+        CLONE_DIR = "/root/savio/${APP_NAME}"
+        DEPLOY_DIR = "/var/www/static_html/${APP_NAME}"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                dir("${CLONE_DIR}") {
-                    git branch: 'main', url: 'https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git'
-                }
+                // Clone repo in /root/savio/project_name
+                sh '''
+                sudo rm -rf ${CLONE_DIR}
+                sudo mkdir -p ${CLONE_DIR}
+                cd ${CLONE_DIR}
+                git clone -b main https://github.com/Greencreon-LLP-2/greenbiller_store_web_react.git .
+                '''
             }
         }
 
@@ -34,24 +38,29 @@ pipeline {
 
         stage('Deploy to Nginx') {
             steps {
-                dir("${CLONE_DIR}") {
-                    sh '''
-                    sudo mkdir -p ${APP_DIR}
-                    sudo rm -rf ${APP_DIR}/*
-                    sudo cp -r dist/* ${APP_DIR}/
-                    sudo systemctl reload nginx
-                    '''
-                }
+                sh '''
+                sudo mkdir -p ${DEPLOY_DIR}
+                sudo rm -rf ${DEPLOY_DIR}/*
+
+                # Copy build output (dist ya build folder check karo)
+                if [ -d "${CLONE_DIR}/dist" ]; then
+                  sudo cp -r ${CLONE_DIR}/dist/* ${DEPLOY_DIR}/
+                elif [ -d "${CLONE_DIR}/build" ]; then
+                  sudo cp -r ${CLONE_DIR}/build/* ${DEPLOY_DIR}/
+                fi
+
+                sudo systemctl reload nginx
+                '''
             }
         }
     }
 
     post {
         success {
-            echo "✅ React app deployed successfully via Nginx on http://<server-ip>:3011"
+            echo "✅ React app deployed successfully at http://<server-ip>:3011"
         }
         failure {
-            echo "❌ Deployment failed. Check logs."
+            echo "❌ Deployment failed. Please check logs."
         }
     }
 }
