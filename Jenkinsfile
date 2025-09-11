@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         APP_NAME = "greenbiller_store_web_react"
-        CLONE_DIR = "/root/savio/${APP_NAME}"
+        CLONE_DIR = "/savio/${APP_NAME}"
         APP_DIR = "/var/www/static_html/${APP_NAME}"
     }
 
