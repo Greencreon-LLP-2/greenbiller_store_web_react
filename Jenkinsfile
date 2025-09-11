@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         APP_NAME = "greenbiller_store_web_react"
-        APP_DIR = "/var/www/static_html/react-app-3011"
+        APP_DIR = "/var/www/static_html/greenbiller_store_web_react"
     }
 
     stages {
@@ -29,6 +29,8 @@ pipeline {
             steps {
                 sh '''
                 # Remove old build
+                sudo mkdir -p ${APP_DIR}
+                sudo chown -R jenkins:jenkins ${APP_DIR}
                 rm -rf ${APP_DIR}/*
 
                 # Copy new build
