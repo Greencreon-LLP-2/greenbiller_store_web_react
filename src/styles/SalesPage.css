@@ -112,3 +112,94 @@
   cursor: pointer;
   border-radius: 4px;
 }
+
+/* Add these styles to your existing SalesPage.css */
+
+.sales-filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sales-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sales-search-icon {
+  position: absolute;
+  left: 10px;
+  color: #6c757d;
+}
+
+.sales-search-box input {
+  padding: 8px 8px 8px 35px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 250px;
+}
+
+.sales-filter-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.sales-btn-filter {
+  background: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.sales-sort-dropdown {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: white;
+}
+
+.sales-action-btns {
+  display: flex;
+  gap: 5px;
+}
+
+.sales-btn-icon {
+  background: none;
+  border: none;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sales-edit {
+  color: #17a2b8;
+}
+
+.sales-danger {
+  color: #dc3545;
+}
+
+.sales-totals {
+  margin-top: 20px;
+  border-top: 1px solid #dee2e6;
+  padding-top: 15px;
+}
+
+.sales-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.sales-total-amount {
+  font-weight: bold;
+}
+
+/* Keep your existing styles and add these modifications */
+.actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}

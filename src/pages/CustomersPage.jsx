@@ -1,37 +1,18 @@
-// pages/CustomerPage.jsx
+// pages/CustomersPage.jsx
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addCustomer } from "../store/slices/customersSlice";
+import { useNavigate } from "react-router-dom";
 import "../styles/CustomersPage.css";
-import AddNewCustomer from "./AddNewCustomer";
 
 const CustomersPage = () => {
-  const [customers, setCustomers] = useState([
-    { id: 1, code: "CTM103", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 2, code: "CTM102", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 3, code: "CTM101", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 4, code: "CTM100", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 5, code: "CTM99", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 6, code: "CTM98", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-     { id: 3, code: "CTM101", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 4, code: "CTM100", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 5, code: "CTM99", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 6, code: "CTM98", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-    { id: 7, code: "CTM97", name: "Walking Customer", email: "walking@example.com", phone: "123-456-7890", status: "Inactive" },
-  ]);
+  const customers = useSelector((state) => state.customers.list);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newCustomer, setNewCustomer] = useState({
-    name: "",
-    email: "",
-    country: "",
-    phone: "",
-    city: "",
-    state: "",
-    pincode: "",
-    avatar: null
-  });
 
   // Filter customers based on search term
   const filteredCustomers = customers.filter(customer =>
@@ -52,62 +33,6 @@ const CustomersPage = () => {
     }
   };
 
-   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewCustomer({
-      ...newCustomer,
-      [name]: value
-    });
-  };
-
-  // Handle image upload
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setNewCustomer({
-        ...newCustomer,
-        avatar: URL.createObjectURL(file)
-      });
-    }
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Generate a new customer code
-    const newCode = `CTM${customers.length + 100}`;
-    
-    // Add the new customer to the list
-    const newCustomerObj = {
-      id: customers.length + 1,
-      code: newCode,
-      name: newCustomer.name,
-      email: newCustomer.email,
-      phone: newCustomer.phone,
-      status: "Active"
-    };
-    
-    setCustomers([...customers, newCustomerObj]);
-    
-    // Reset form and close modal
-    setNewCustomer({
-      name: "",
-      email: "",
-      country: "",
-      phone: "",
-      city: "",
-      state: "",
-      pincode: "",
-      avatar: null
-    });
-    
-    setIsModalOpen(false);
-  };
-
-  const handleAddCustomer = (newCustomer) => {
-    setCustomers([...customers, newCustomer]);
-  };
-
   return (
     <div className="sales-page">
       <h2 className="title">Customers</h2>
@@ -121,7 +46,7 @@ const CustomersPage = () => {
         <button className="btn collapse">⌄</button>
         <button 
           className="btn add" 
-          onClick={() => setIsModalOpen(true)} // Open modal on click
+          onClick={() => navigate("/customers/add")} 
         >
           + Add New Customer
         </button>      
@@ -190,8 +115,8 @@ const CustomersPage = () => {
                       </span>
                     </td>
                     <td>
-                      <button className="action-btn"><i class="bi bi-pencil-square"></i></button>
-                      <button className="action-btn"><i class="bi bi-trash"></i></button>
+                      <button className="action-btn"><i className="bi bi-pencil-square"></i></button>
+                      <button className="action-btn"><i className="bi bi-trash"></i></button>
                     </td>
                   </tr>
                 ))
@@ -242,11 +167,6 @@ const CustomersPage = () => {
           </div>
         </div>
       </div>
-      <AddNewCustomer 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onAddCustomer={handleAddCustomer}
-      />
     </div>
   );
 };

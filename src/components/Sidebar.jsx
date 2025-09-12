@@ -31,18 +31,17 @@ const Sidebar = () => {
       label: "Contacts",
       icon: <i class="bi bi-person"></i>,
       items: [
-        { path: "/contacts/customers", label: "> Customers" },
-        { path: "/contacts/suppliers", label: "> Suppliers" },
-        // { path: "/contacts/users", label: "> Users" },
+        { path: "/customers", label: "> Customers" },
+        { path: "/suppliers", label: "> Suppliers" },
       ],
     },
     {
-      path: "",
+      path: "/Purchases",
       label: "Purchase",
       icon: <i class="bi bi-bag"></i>
     },
     {
-      path: "",
+      path: "/Expenses",
       label: "Expenses",
       icon: <i class="bi bi-currency-dollar"></i>
     },

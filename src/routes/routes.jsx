@@ -9,11 +9,14 @@ import AuthLayout from "../layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
 // Import the new pages
 import CustomersPage from "../pages/CustomersPage";
+import AddCustomer from "../pages/AddCustomer";
 import SuppliersPage from "../pages/SuppliersPage";
 import UsersPage from "../pages/UsersPage";
 import AddSales from "../pages/AddnewSales";
 import AddNewCustomer from "../pages/AddNewCustomer";
 import AddUserPage from "../pages/AddUserPage";
+import ExpensePage from "../pages/ExpensePage";
+import PurchasePage from "../pages/PurchasePage";
 import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
@@ -29,12 +32,19 @@ export const router = createBrowserRouter([
             path: "dashboard",
             element: <DashboardPage />,
           },
-           {
+          {
             path: "users",
             children: [
               { index: true, element: <UsersPage /> },
               { path: "add", element: <AddUserPage /> },
             ],
+          },
+          {
+            path: "customers",
+            children: [
+              { index: true, element: <CustomersPage />},
+              { path: "add", element: <AddCustomer />}
+            ]
           },
           {
             path: "sales",
@@ -44,24 +54,20 @@ export const router = createBrowserRouter([
             path: "sales/add",
             element: <AddSales />,
           },
-          { path: "/profile", element: <Profile /> },
           {
-            path: "contacts",
-            children: [
-              {
-                path: "customers",
-                element: <CustomersPage />,
-              },
-              {
-                path: "customers/add",
-                element: <AddNewCustomer />, // You would need to create this page component
-              },
-              {
-                path: "suppliers",
-                element: <SuppliersPage />,
-              },
-            ],
+            path: "expenses",
+            element: <ExpensePage />, // Add the expenses route
           },
+          {
+            path: "purchases",
+            element: <PurchasePage />, // Add the expenses route
+          },
+          { path: "profile", element: <Profile /> },
+          {
+            path: "suppliers",
+            element: <SuppliersPage />,
+          },
+
           {
             // Redirect to dashboard by default
             index: true,

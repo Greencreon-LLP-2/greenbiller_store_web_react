@@ -1,0 +1,244 @@
+/* Page container */
+.purchase-page {
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f7f9;
+  min-height: 100vh;
+}
+
+/* Page Header */
+.purchase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.purchase-header h4 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.purchase-header p {
+  margin: 5px 0 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Header actions */
+.purchase-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.purchase-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+  transition: all 0.2s ease;
+}
+
+.purchase-btn-icon:hover {
+  background-color: #f3f4f6;
+  color: #ff7f50;
+  transform: translateY(-2px);
+}
+
+.purchase-btn-primary {
+  background: #ff7f50;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.purchase-btn-primary:hover {
+  background-color: #ff6333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 127, 80, 0.35);
+}
+
+/* Search box */
+.purchase-search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: #fff;
+  width: 300px;
+}
+
+.purchase-search-box input {
+  border: none;
+  outline: none;
+  margin-left: 8px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.purchase-search-icon {
+  color: #888;
+}
+
+.purchase-btn-filter {
+  background: #ff7f50;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.purchase-sort-dropdown {
+  border-radius: 6px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+/* Action buttons */
+.purchase-action-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.purchase-btn-icon.purchase-edit {
+  color: #f59e0b; /* Orange */
+}
+
+.purchase-btn-icon.purchase-danger {
+  color: #ef4444; /* Red */
+}
+
+/* Card */
+.purchase-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.purchase-card-body {
+  padding: 20px;
+}
+
+/* Filters row */
+.purchase-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.purchase-filter-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Total Amount */
+.purchase-total {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  border-top: 2px solid #eee;
+}
+
+.purchase-total-amount {
+  margin-left: 10px;
+  color: #ff7f50;
+}
+
+/* DataTable overrides */
+.rdt_Table {
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.rdt_TableRow {
+  background-color: transparent !important;
+  min-height: 48px;
+  border-bottom: 1px solid #eee;
+}
+
+.rdt_TableRow:hover {
+  background-color: #f9f9f9 !important;
+}
+
+.rdt_TableCell {
+  padding: 16px 12px;
+  font-size: 14px;
+  color: #444;
+}
+
+.rdt_TableCol {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+.rdt_TableCol input[type="checkbox"],
+.rdt_TableCell input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .purchase-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .purchase-header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .purchase-filters {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .purchase-search-box {
+    width: 100%;
+  }
+
+  .purchase-filter-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

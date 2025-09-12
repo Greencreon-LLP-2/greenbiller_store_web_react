@@ -20,7 +20,7 @@ const initialState = {
       email: 'thomas@example.com',
       role: 'Admin',
       createdOn: '19 Jan 2023',
-      status: 'Inactive',
+      status: 'active',
       avatar: 'assets/img/users/user-23.jpg'
     },
     // Add other mock users from your HTML
