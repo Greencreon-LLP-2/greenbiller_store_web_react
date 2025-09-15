@@ -13,10 +13,12 @@ import AddCustomer from "../pages/AddCustomer";
 import SuppliersPage from "../pages/SuppliersPage";
 import UsersPage from "../pages/UsersPage";
 import AddSales from "../pages/AddnewSales";
-import AddNewCustomer from "../pages/AddNewCustomer";
+// import AddNewCustomer from "../pages/AddNewCustomer";
 import AddUserPage from "../pages/AddUserPage";
 import ExpensePage from "../pages/ExpensePage";
+import ExpenseForm from "../pages/ExpenseForm";
 import PurchasePage from "../pages/PurchasePage";
+import AddPurchase from "../pages/AddPurchase";
 import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
@@ -56,11 +58,17 @@ export const router = createBrowserRouter([
           },
           {
             path: "expenses",
-            element: <ExpensePage />, // Add the expenses route
+            children: [
+              { index: true, element: <ExpensePage /> },
+              { path: "add", element: <ExpenseForm /> },
+            ],
           },
           {
             path: "purchases",
-            element: <PurchasePage />, // Add the expenses route
+            children: [
+              { index: true, element: <PurchasePage /> },
+              { path: "create", element: <AddPurchase /> },
+            ],
           },
           { path: "profile", element: <Profile /> },
           {

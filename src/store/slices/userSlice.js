@@ -23,6 +23,26 @@ const initialState = {
       status: 'active',
       avatar: 'assets/img/users/user-23.jpg'
     },
+    {
+      id: 1,
+      name: 'Thomas',
+      phone: '+12163547758',
+      email: 'thomas@example.com',
+      role: 'Admin',
+      createdOn: '19 Jan 2023',
+      status: 'Inactive',
+      avatar: 'assets/img/users/user-23.jpg'
+    },
+    {
+      id: 1,
+      name: 'Thomas',
+      phone: '+12163547758',
+      email: 'thomas@example.com',
+      role: 'Admin',
+      createdOn: '19 Jan 2023',
+      status: 'active',
+      avatar: 'assets/img/users/user-23.jpg'
+    },
     // Add other mock users from your HTML
   ],
   loading: false,

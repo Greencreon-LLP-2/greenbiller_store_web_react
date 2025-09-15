@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteExpense } from "../store/slices/expensesSlice";
@@ -16,6 +17,8 @@ import "../styles/Expense.css";
 const ExpensePage = () => {
   const expenses = useSelector((state) => state.expenses?.list || []);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
 
   // States for search & sorting
   const [search, setSearch] = useState("");
@@ -142,7 +145,12 @@ const ExpensePage = () => {
           </button>
 
           {/* Add Expense */}
-          <button className="expense-btn-primary">+ Add New Expense</button>
+          <button 
+          className="expense-btn-primary" 
+          onClick={() => navigate("/expenses/add")} 
+        >
+          + Add New Expense
+        </button>
         </div>
       </div>
 

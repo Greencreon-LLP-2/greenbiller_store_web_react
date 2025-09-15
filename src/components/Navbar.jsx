@@ -9,19 +9,36 @@ import {
   Settings,
   Maximize,
   HelpCircle,
+  MoreVertical,
 } from "react-feather";
 import "../styles/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ toggleMobileSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const dropdownRef = useRef(null);
   const searchRef = useRef(null);
   const notificationsRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      // Close mobile menu when resizing to desktop
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
 
   const handleProfile = () => {
     navigate("/profile");
@@ -41,6 +58,12 @@ const Navbar = () => {
         !notificationsRef.current.contains(e.target)
       ) {
         setIsNotificationsOpen(false);
+      }
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(e.target)
+      ) {
+        setIsMobileMenuOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -71,9 +94,15 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-content">
+        {isMobile && (
+          <button className="mobile-menu-btn" onClick={toggleMobileSidebar}>
+            <i className="bi bi-list"></i>
+          </button>
+        )}
         <div className="navbar-spacer" />
 
         {/* ---- Feature Icons ---- */}
+        {!isMobile && (
         <ul className="nav-items">
           {/* Search */}
           <li className="nav-item" ref={searchRef}>
@@ -160,8 +189,38 @@ const Navbar = () => {
             </button>
           </li>
         </ul>
+        )}
+
+        {isMobile && (
+          <div className="mobile-menu-container" ref={mobileMenuRef}>
+            <button 
+              className="mobile-menu-icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <MoreVertical size={20} />
+            </button>
+            
+            {isMobileMenuOpen && (
+              <div className="mobile-menu-dropdown">
+                <div className="mobile-profile-info">
+                  <p className="profile-name">Store Admin</p>
+                  <p className="profile-role">Admin</p>
+                </div>
+                <div className="dropdown-divider"></div>
+                <div className="dropdown-item" onClick={handleProfile}>
+                  <span className="dropdown-icon">👤</span>{" "}
+                  <span>My Profile</span>
+                </div>
+                <div className="dropdown-item" onClick={handleLogout}>
+                  <span className="dropdown-icon">🚪</span> <span>Logout</span>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* ---- Existing Profile untouched ---- */}
+        {!isMobile && (
         <div className="navbar-profile-container" ref={dropdownRef}>
           <div
             className="navbar-profile"
@@ -187,6 +246,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { useSelector, useDispatch } from "react-redux";
 import { deletePurchase } from "../store/slices/purchasesSlice";
@@ -16,6 +17,7 @@ import "../styles/Purchase.css";
 const PurchasePage = () => {
   const purchases = useSelector((state) => state.purchases?.list || []);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // States for search & sorting
   const [search, setSearch] = useState("");
@@ -147,7 +149,12 @@ const PurchasePage = () => {
           <button className="purchase-btn-icon">
             <FiChevronDown />
           </button>
-          <button className="purchase-btn-primary">+ Add New Purchase</button>
+          <button 
+          className="purchase-btn-primary" 
+          onClick={() => navigate("/purchases/create")} 
+        >
+          + Add New Purchase
+        </button>
         </div>
       </div>
 

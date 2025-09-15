@@ -1,12 +1,22 @@
 // components/Sidebar.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Sidebar.css";
 import logo1 from "../assets/logo1.png";
 import dashboardIcon from "../assets/dashboard_icon.png";
 
-const Sidebar = () => {
+const Sidebar = ({ isMobileOpen, toggleMobileSidebar }) => {
   const [isContactsOpen, setContactsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const navItems = [
     {
@@ -36,13 +46,13 @@ const Sidebar = () => {
       ],
     },
     {
-      path: "/Purchases",
-      label: "Purchase",
+      path: "/purchases",
+      label: "purchase",
       icon: <i class="bi bi-bag"></i>
     },
     {
-      path: "/Expenses",
-      label: "Expenses",
+      path: "/expenses",
+      label: "expenses",
       icon: <i class="bi bi-currency-dollar"></i>
     },
   ];
@@ -52,8 +62,21 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sidebar">
-      <img src={logo1} alt="Green Biller Logo" className="sidebar-logo" />
+     <>
+      {/* Mobile overlay */}
+      {isMobile && isMobileOpen && (
+        <div className="sidebar-overlay" onClick={toggleMobileSidebar}></div>
+      )}
+      
+      <div className={`sidebar ${isMobileOpen ? 'mobile-open' : ''}`}>
+        <div className="sidebar-header">
+          <img src={logo1} alt="Green Biller Logo" className="sidebar-logo" />
+          {isMobile && (
+            <button className="sidebar-close" onClick={toggleMobileSidebar}>
+              <i className="bi bi-x-lg"></i>
+            </button>
+          )}
+        </div>
       <nav className="sidebar-nav">
         {navItems.map((item) =>
           item.type === "dropdown" ? (
@@ -102,6 +125,7 @@ const Sidebar = () => {
         )}
       </nav>
     </div>
+    </>
   );
 };
 

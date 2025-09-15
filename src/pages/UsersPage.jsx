@@ -1,28 +1,67 @@
 // pages/UsersPage.jsx
-import React, { useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
-import '../styles/UserList.css';
+import {
+  FiSearch,
+  FiEdit,
+  FiTrash2,
+  FiFilter,
+  FiRotateCw,
+  FiChevronDown,
+  FiEye,
+  FiPlusCircle
+} from 'react-icons/fi';
+import { FaFilePdf, FaFileExcel } from 'react-icons/fa';
+import '../styles/UsersPage.css';
 
 const UsersPage = () => {
   const dispatch = useDispatch();
   const { users } = useSelector(state => state.users);
+  
+  // States for search & sorting
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Newest");
+
+  // Filter + Sort
+  const filteredUsers = useMemo(() => {
+    let data = users.filter(
+      user =>
+        user.name.toLowerCase().includes(search.toLowerCase()) ||
+        user.email.toLowerCase().includes(search.toLowerCase()) ||
+        user.phone.toLowerCase().includes(search.toLowerCase()) ||
+        user.role.toLowerCase().includes(search.toLowerCase())
+    );
+
+    if (sortOrder === "Newest") {
+      data = [...data].sort(
+        (a, b) => new Date(b.createdOn) - new Date(a.createdOn)
+      );
+    } else if (sortOrder === "Oldest") {
+      data = [...data].sort(
+        (a, b) => new Date(a.createdOn) - new Date(b.createdOn)
+      );
+    }
+
+    return data;
+  }, [users, search, sortOrder]);
 
   const columns = [
     {
       name: 'User Name',
       selector: row => (
         <div className="userimgname">
-          <a href="javascript:void(0);" className="userslist-img bg-img">
+          <div className="userslist-img bg-img">
             <img src={row.avatar} alt="user" />
-          </a>
+          </div>
           <div>
-            <a href="javascript:void(0);">{row.name}</a>
+            <span>{row.name}</span>
           </div>
         </div>
       ),
       sortable: true,
+      grow: 2,
     },
     {
       name: 'Phone',
@@ -33,6 +72,7 @@ const UsersPage = () => {
       name: 'Email',
       selector: row => row.email,
       sortable: true,
+      grow: 2,
     },
     {
       name: 'Role',
@@ -41,7 +81,7 @@ const UsersPage = () => {
     },
     {
       name: 'Created On',
-      selector: row => row.createdOn,
+      selector: row => new Date(row.createdOn).toLocaleDateString(),
       sortable: true,
     },
     {
@@ -56,78 +96,91 @@ const UsersPage = () => {
     {
       name: 'Action',
       cell: row => (
-        <div className="edit-delete-action">
-          <a className="me-2 p-2 mb-0" href="javascript:void(0);">
-            <i data-feather="eye" className="action-eye"></i>
-          </a>
-          <a className="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-            <i data-feather="edit" className="feather-edit"></i>
-          </a>
-          <a className="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-            <i data-feather="trash-2" className="feather-trash-2"></i>
-          </a>
+        <div className="users-action-btns">
+          <button
+            className="users-btn-icon users-view"
+            onClick={() => alert(`View user: ${row.name}`)}
+          >
+            <FiEye />
+          </button>
+          <button
+            className="users-btn-icon users-edit"
+            onClick={() => alert(`Edit user: ${row.name}`)}
+          >
+            <FiEdit />
+          </button>
+          <button
+            className="users-btn-icon users-danger"
+            onClick={() => alert(`Delete user: ${row.name}`)}
+          >
+            <FiTrash2 />
+          </button>
         </div>
       ),
     },
   ];
 
   return (
-    <div className="page-wrapper">
-      <div className="content">
-        <div className="page-header">
-          <div className="add-item d-flex">
-            <div className="page-title">
-              <h4>User List</h4>
-              <h6>Manage Your Users</h6>
-            </div>
+    <div className="users-page">
+      <h2 className="title">User List</h2>
+      <p className="subtitle">Manage Your Users</p>
+
+      <div className="actions">
+        <button className="btn pdf">
+          <FaFilePdf />
+        </button>
+        <button className="btn excel">
+          <FaFileExcel />
+        </button>
+        <button className="btn print">Print</button>
+        <button className="btn refresh">
+          <FiRotateCw />
+        </button>
+        <button className="btn collapse">
+          <FiChevronDown />
+        </button>
+        <Link to="/users/add" className="btn add">
+          <FiPlusCircle className="me-2" /> Add New User
+        </Link>
+      </div>
+
+      <div className="users-content">
+        <div className="users-filters">
+          <div className="users-search-box">
+            <FiSearch className="users-search-icon" />
+            <input
+              type="text"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
-          <ul className="table-top-head">
-            {/* <li>
-              <a data-bs-toggle="tooltip" data-bs-placement="top" title="Pdf">
-                <img src="assets/img/icons/pdf.svg" alt="img" />
-              </a>
-            </li>
-            <li>
-              <a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel">
-                <img src="assets/img/icons/excel.svg" alt="img" />
-              </a>
-            </li>
-            <li>
-              <a data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
-                <i data-feather="printer" className="feather-rotate-ccw"></i>
-              </a>
-            </li>
-            <li>
-              <a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh">
-                <i data-feather="rotate-ccw" className="feather-rotate-ccw"></i>
-              </a>
-            </li>
-            <li>
-              <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header">
-                <i data-feather="chevron-up" className="feather-chevron-up"></i>
-              </a>
-            </li> */}
-          </ul>
-          <div className="page-btn">
-            <Link to="/users/add" className="btn btn-added">
-              <i data-feather="plus-circle" className="me-2"></i>Add New User
-            </Link>
+          <div className="users-filter-actions">
+            <button className="users-btn-filter">
+              <FiFilter />
+            </button>
+            <select
+              className="users-sort-dropdown"
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="Newest">Sort by Date (Newest)</option>
+              <option value="Oldest">Sort by Date (Oldest)</option>
+            </select>
           </div>
         </div>
 
-        <div className="card table-list-card">
-          <div className="card-body">
-            <DataTable
-              columns={columns}
-              data={users}
-              pagination
-              highlightOnHover
-              striped
-              responsive
-              className="table-responsive"
-            />
-          </div>
-        </div>
+        <DataTable
+          columns={columns}
+          data={filteredUsers}
+          pagination
+          striped
+          responsive
+          highlightOnHover
+          noDataComponent={
+            <div className="no-data">No matching records found</div>
+          }
+        />
       </div>
     </div>
   );
