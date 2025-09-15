@@ -1,20 +1,56 @@
+/* page */
+.dashboard-page {
+  padding: 20px;
+  background: #f5f6fa;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Metrics grid */
+/* Metrics grid */
+/* Metrics grid */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
+  margin-bottom: 20px;
 }
 
+/* Metric card base styles (uniform size) */
 .metric-card {
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff; 
+  border-radius: 6px;
+  border: 1px solid #e2dddd;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  min-height: 100px; 
+  width: 100%; 
+  box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .metric-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
+
+.metric-icon {
+  font-size: 2.5rem;
+  color: #01010f;
+}
+.metric-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Icon on the right */
+.metric-icon {
+  font-size: 2.5rem;
+  color: #01010f;
+}
+
 
 .metric-title {
   font-size: 1rem;
@@ -23,38 +59,222 @@
   font-weight: 500;
 }
 
+
+
 .metric-value {
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 00;
   color: #2c3e50;
 }
 
-.metric-icon {
-  font-size: 3rem;
-  color: #01010f;
+
+/* Ensure icons for colored cards are white */
+.customers-card .metric-icon,
+.packages-card .metric-icon,
+.purchase-invoice-card .metric-icon,
+.sales-card .metric-icon {
+  color: #fff;
 }
 
-/* If you need to adjust the icon position */
-.metric-header {
+/* Keep text readable */
+.customers-card .metric-title,
+.packages-card .metric-title,
+.purchase-invoice-card .metric-title,
+.sales-card .metric-title,
+.customers-card .metric-value,
+.packages-card .metric-value,
+.purchase-invoice-card .metric-value,
+.sales-card .metric-value {
+  color: #fff;
+}
+
+
+/* Colored cards: second row only */
+.customers-card { background-color: #ffa500; color: #fff; }
+.packages-card { background-color: #04a1d5; color: #fff; }
+.purchase-invoice-card { background-color: #022c49; color: #fff; }
+.sales-card { background-color: #0a950a; color: #fff; }
+
+
+/* chart + recent products row */
+.dashboard-row {
+  display: flex;
+  gap: 20px;
+  align-items: stretch; 
+  flex-wrap: wrap;
+}
+
+
+/* chart container left (bigger) */
+.chart-container {
+  flex: 2;
+  min-width: 320px;
+  background: #fff;
+  border-radius: 6px;
+  margin-right: 200;
+  padding: 14px;
+  border: 1px solid #e2dddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  display: flex;           
+  flex-direction: column; 
+}
+
+/* ensure svg fills container */
+.chart-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* chart-specific styles from D3 classes */
+.grid line {
+  stroke: #f0f0f0;
+}
+
+.x-axis path, .y-axis path {
+  stroke: #cfcfcf;
+}
+
+.x-axis line, .y-axis line {
+  stroke: #e8e8e8;
+}
+
+.chart-line.sales {
+  stroke: #3498db;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-line.purchase {
+  stroke: #2ecc71;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+.chart-dot.sales { fill: #3498db; }
+.chart-dot.purchase { fill: #2ecc71; }
+
+/* legend boxes */
+.legend-box.sales { fill: #3498db; }
+.legend-box.purchase { fill: #2ecc71; }
+
+/* titles/labels */
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.axis-label {
+  fill: #555;
+  font-size: 12px;
+}
+
+/* recent products (right, smaller) */
+.recent-products-section {
+  flex: 1;
+  min-width: 240px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 14px;
+  border: 1px solid #e2dddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  display: flex;            /* ✅ stretch height same as chart */
+  flex-direction: column;
+}
+
+.recent-products-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 15px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-/* 🎨 Different background colors for each card */
-.metric-card:nth-child(1) {
-  background-color: #ffa500; /* light red */
+.btn-view-all {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.metric-card:nth-child(2) {
-  background-color: #ADD8E6; /* light green */
+.recent-products-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.metric-card:nth-child(3) {
-  background-color: #e3f2fd; /* light blue */
+.recent-products-table th,
+.recent-products-table td {
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+  font-size: 0.92rem;
 }
 
-.metric-card:nth-child(4) {
-  background-color: #90EE90; /* light orange */
+/* Increase DataTable row height */
+.rdt_TableRow {
+  background-color: transparent !important;
+  min-height: 64px; /* increased from 48px */
+  border-bottom: 1px solid #ddd;
+  transition: background 0.2s ease;
+}
+
+.rdt_TableRow:hover {
+  background-color: #f1f3f6; 
+}
+
+.rdt_TableCell {
+  padding: 20px 16px; 
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.rdt_TableCol {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 20px 16px; 
+}
+
+.rdt_TableCol input[type="checkbox"],
+.rdt_TableCell input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* product inventory table container */
+.table-container {
+  background: #fff;
+  border-radius: 6px;
+  padding: 16px;
+  border: 1px solid #e2dddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-top: 12px;
+}
+
+/* buttons */
+.btn-view, .btn-delete {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 6px;
+}
+
+.btn-view { background: #3498db; color: #fff; }
+.btn-delete { background: #e74c3c; color: #fff; }
+
+/* responsive: stack chart and recent products on small screens */
+@media (max-width: 900px) {
+  .dashboard-row { flex-direction: column; }
+  .chart-container, .recent-products-section { width: 100%; }
 }
