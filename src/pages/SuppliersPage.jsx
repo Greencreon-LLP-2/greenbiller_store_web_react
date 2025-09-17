@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, } from "react";
+import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteSupplier } from "../store/slices/suppliersSlice";
@@ -16,6 +17,8 @@ import "../styles/SuppliersPage.css";
 const SuppliersPage = () => {
   const suppliers = useSelector((state) => state.suppliers?.list || []);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   // ✅ States for search & sorting
   const [search, setSearch] = useState("");
@@ -135,7 +138,12 @@ const SuppliersPage = () => {
           </button>
 
           {/* Add Supplier */}
-          <button className="sup-btn-primary">+ Add New Supplier</button>
+          <button 
+          className="sup-btn-primary" 
+          onClick={() => navigate("/suppliers/add")} 
+        >
+          + Add New Supplier
+        </button>
         </div>
       </div>
 

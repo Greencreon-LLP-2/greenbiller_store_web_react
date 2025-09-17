@@ -13,6 +13,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import CustomersPage from "../pages/CustomersPage";
 import AddCustomer from "../pages/AddCustomer";
 import SuppliersPage from "../pages/SuppliersPage";
+import AddnewSupplier from "../pages/AddnewSupplier";
 import UsersPage from "../pages/UsersPage";
 import AddSales from "../pages/AddnewSales";
 // import AddNewCustomer from "../pages/AddNewCustomer";
@@ -78,7 +79,10 @@ export const router = createBrowserRouter([
           { path: "profile", element: <Profile /> },
           {
             path: "suppliers",
-            element: <SuppliersPage />,
+            children: [
+              { index: true, element: <SuppliersPage /> },
+              { path: "add", element: <AddnewSupplier /> },
+            ],
           },
           {
             path: "/settings",

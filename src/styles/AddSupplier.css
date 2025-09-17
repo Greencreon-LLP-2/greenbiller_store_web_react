@@ -1,0 +1,223 @@
+/* Page container */
+.supplier-page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* Main container */
+.supplier-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 4px;
+  max-width: 950px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.supplier-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #1f2937;
+  text-align: left;
+
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+
+.form-layout {
+  
+  align-items: flex-start;
+  gap: 30px;
+}
+
+/* ---------------------- */
+/* Avatar Section         */
+/* ---------------------- */
+
+.left-avatar {
+  flex: 0 0 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Avatar + button in a row */
+.avatar-upload-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Square avatar box */
+.avatar-preview {
+  width: 130px;
+  height: 130px;
+  border-radius: 8px;
+  border: 2px dashed #d1d5db;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #f9fafb;
+  transition: border-color 0.3s ease;
+}
+
+.avatar-preview:hover {
+  border-color: #ea580c;
+}
+
+/* When image exists */
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder text */
+.placeholder-text {
+  font-size: 14px;
+  color: #9ca3af;
+  text-align: center;
+  padding: 8px;
+}
+
+.hidden-input {
+  display: none;
+}
+
+/* Upload / Change button */
+.change-img-btn {
+  background: linear-gradient(90deg, #f97316, #ea580c);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.change-img-btn:hover {
+  background: linear-gradient(90deg, #ea580c, #c2410c);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.35);
+}
+
+/* ---------------------- */
+/* Form Section            */
+/* ---------------------- */
+
+.supplier-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.form-row.three-cols .form-group {
+  flex: 1 1 calc(33.333% - 10px);
+}
+
+.form-row.two-cols .form-group {
+  flex: 1 1 calc(50% - 8px);
+}
+
+.form-group.full-width {
+  flex: 1 1 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.supplier-input,
+.supplier-textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.supplier-input:focus,
+.supplier-textarea:focus {
+  outline: none;
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25);
+}
+
+.supplier-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.char-count {
+  font-size: 12px;
+  text-align: right;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* ---------------------- */
+/* Buttons                 */
+/* ---------------------- */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.supplier-btn-orange {
+  background: linear-gradient(90deg, #f97316, #ea580c);
+  color: #fff;
+  padding: 12px 30px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+}
+
+.supplier-btn-orange:hover {
+  background: linear-gradient(90deg, #ea580c, #c2410c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.4);
+}
+
+.cancel-btn {
+  background: #f3f4f6;
+  color: #374151;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: #e5e7eb;
+}
