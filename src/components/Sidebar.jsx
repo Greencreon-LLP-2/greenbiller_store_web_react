@@ -47,12 +47,12 @@ const Sidebar = ({ isMobileOpen, toggleMobileSidebar }) => {
     },
     {
       path: "/purchases",
-      label: "purchase",
+      label: "Purchase",
       icon: <i class="bi bi-bag"></i>
     },
     {
       path: "/expenses",
-      label: "expenses",
+      label: "Expenses",
       icon: <i class="bi bi-currency-dollar"></i>
     },
   ];

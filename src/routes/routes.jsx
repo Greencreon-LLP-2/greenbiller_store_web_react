@@ -1,11 +1,13 @@
 // routes/routes.jsx
 import { createBrowserRouter } from "react-router-dom";
 
+import AuthLayout from "../layouts/AuthLayout";
+import MainLayout from "../layouts/MainLayout";
+import SettingsLayout from "../layouts/SettingsLayout";
+
 import DashboardPage from "../pages/DashboardPage";
 import SalesPage from "../pages/SalesPage";
-import MainLayout from "../layouts/MainLayout";
 import LoginPage from "../pages/Login";
-import AuthLayout from "../layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
 // Import the new pages
 import CustomersPage from "../pages/CustomersPage";
@@ -20,6 +22,9 @@ import ExpenseForm from "../pages/ExpenseForm";
 import PurchasePage from "../pages/PurchasePage";
 import AddPurchase from "../pages/AddPurchase";
 import Profile from "../pages/Profile";
+
+import ProfileSettings from "../pages/settings/ProfileSettings";
+import SecurityPage from "../pages/settings/SecurityPage";
 
 export const router = createBrowserRouter([
   {
@@ -44,9 +49,9 @@ export const router = createBrowserRouter([
           {
             path: "customers",
             children: [
-              { index: true, element: <CustomersPage />},
-              { path: "add", element: <AddCustomer />}
-            ]
+              { index: true, element: <CustomersPage /> },
+              { path: "add", element: <AddCustomer /> },
+            ],
           },
           {
             path: "sales",
@@ -75,7 +80,15 @@ export const router = createBrowserRouter([
             path: "suppliers",
             element: <SuppliersPage />,
           },
-
+          {
+            path: "/settings",
+            element: <SettingsLayout />,
+            children: [
+              { path: "profile", element: <ProfileSettings /> },
+              { path: "security", element: <SecurityPage /> },
+              // { path: "notifications", element: <NotificationSettings /> },
+            ],
+          },
           {
             // Redirect to dashboard by default
             index: true,

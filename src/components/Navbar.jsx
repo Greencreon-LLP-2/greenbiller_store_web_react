@@ -1,4 +1,5 @@
 // components/Navbar.jsx
+import { Link } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -38,7 +39,7 @@ const Navbar = ({ toggleMobileSidebar }) => {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [])
+  }, []);
 
   const handleProfile = () => {
     navigate("/profile");
@@ -59,10 +60,7 @@ const Navbar = ({ toggleMobileSidebar }) => {
       ) {
         setIsNotificationsOpen(false);
       }
-      if (
-        mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(e.target)
-      ) {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -103,103 +101,103 @@ const Navbar = ({ toggleMobileSidebar }) => {
 
         {/* ---- Feature Icons ---- */}
         {!isMobile && (
-        <ul className="nav-items">
-          {/* Search */}
-          <li className="nav-item" ref={searchRef}>
-            <button
-              className="icon-btn"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            >
-              <Search size={18} />
-            </button>
-            {isSearchOpen && (
-              <div className="dropdown-panel search-panel">
-                <div className="search-header">
-                  <input type="text" placeholder="Search..." autoFocus />
-                  <XCircle
-                    size={16}
-                    className="clear-icon"
-                    onClick={() => setIsSearchOpen(false)}
-                  />
+          <ul className="nav-items">
+            {/* Search */}
+            <li className="nav-item" ref={searchRef}>
+              <button
+                className="icon-btn"
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+              >
+                <Search size={18} />
+              </button>
+              {isSearchOpen && (
+                <div className="dropdown-panel search-panel">
+                  <div className="search-header">
+                    <input type="text" placeholder="Search..." autoFocus />
+                    <XCircle
+                      size={16}
+                      className="clear-icon"
+                      onClick={() => setIsSearchOpen(false)}
+                    />
+                  </div>
+                  <div className="recent-section">
+                    <h6>Recent Searches</h6>
+                    <ul>
+                      {recentSearches.map((s, i) => (
+                        <li key={i}>{s}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="help-section">
+                    <h6>
+                      <HelpCircle size={14} /> Help
+                    </h6>
+                    <p>How to update inventory</p>
+                  </div>
                 </div>
-                <div className="recent-section">
-                  <h6>Recent Searches</h6>
+              )}
+            </li>
+
+            {/* Fullscreen */}
+            <li className="nav-item">
+              <button className="icon-btn" onClick={toggleFullscreen}>
+                <Maximize size={18} />
+              </button>
+            </li>
+
+            {/* Mail */}
+            <li className="nav-item">
+              <button className="icon-btn">
+                <Mail size={18} />
+                <span className="badge">1</span>
+              </button>
+            </li>
+
+            {/* Notifications */}
+            <li className="nav-item" ref={notificationsRef}>
+              <button
+                className="icon-btn"
+                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+              >
+                <Bell size={18} />
+                <span className="badge">{notifications.length}</span>
+              </button>
+              {isNotificationsOpen && (
+                <div className="dropdown-panel notification-panel">
+                  <div className="panel-header">Notifications</div>
                   <ul>
-                    {recentSearches.map((s, i) => (
-                      <li key={i}>{s}</li>
+                    {notifications.map((n) => (
+                      <li key={n.id}>
+                        <p>{n.text}</p>
+                        <small>{n.time}</small>
+                      </li>
                     ))}
                   </ul>
+                  <div className="panel-footer">
+                    <a href="#all">View all</a>
+                  </div>
                 </div>
-                <div className="help-section">
-                  <h6>
-                    <HelpCircle size={14} /> Help
-                  </h6>
-                  <p>How to update inventory</p>
-                </div>
-              </div>
-            )}
-          </li>
+              )}
+            </li>
 
-          {/* Fullscreen */}
-          <li className="nav-item">
-            <button className="icon-btn" onClick={toggleFullscreen}>
-              <Maximize size={18} />
-            </button>
-          </li>
-
-          {/* Mail */}
-          <li className="nav-item">
-            <button className="icon-btn">
-              <Mail size={18} />
-              <span className="badge">1</span>
-            </button>
-          </li>
-
-          {/* Notifications */}
-          <li className="nav-item" ref={notificationsRef}>
-            <button
-              className="icon-btn"
-              onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-            >
-              <Bell size={18} />
-              <span className="badge">{notifications.length}</span>
-            </button>
-            {isNotificationsOpen && (
-              <div className="dropdown-panel notification-panel">
-                <div className="panel-header">Notifications</div>
-                <ul>
-                  {notifications.map((n) => (
-                    <li key={n.id}>
-                      <p>{n.text}</p>
-                      <small>{n.time}</small>
-                    </li>
-                  ))}
-                </ul>
-                <div className="panel-footer">
-                  <a href="#all">View all</a>
-                </div>
-              </div>
-            )}
-          </li>
-
-          {/* Settings shortcut */}
-          <li className="nav-item">
-            <button className="icon-btn">
-              <Settings size={18} />
-            </button>
-          </li>
-        </ul>
+            {/* Settings shortcut */}
+            <li className="nav-item">
+              <Link to="/settings/profile" className="icon-btn">
+                <Settings size={18} />
+              </Link>
+            </li>
+          </ul>
         )}
 
         {isMobile && (
           <div className="mobile-menu-container" ref={mobileMenuRef}>
-            <button 
+            <button
               className="mobile-menu-icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <MoreVertical size={20} />
             </button>
-            
+
             {isMobileMenuOpen && (
               <div className="mobile-menu-dropdown">
                 <div className="mobile-profile-info">
@@ -221,31 +219,31 @@ const Navbar = ({ toggleMobileSidebar }) => {
 
         {/* ---- Existing Profile untouched ---- */}
         {!isMobile && (
-        <div className="navbar-profile-container" ref={dropdownRef}>
-          <div
-            className="navbar-profile"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
-            <i className="bi bi-person-square text-2xl"></i>
-            <div className="profile-info">
-              <p className="profile-name">Store Admin</p>
-              <p className="profile-role">Admin</p>
+          <div className="navbar-profile-container" ref={dropdownRef}>
+            <div
+              className="navbar-profile"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <i className="bi bi-person-square text-2xl"></i>
+              <div className="profile-info">
+                <p className="profile-name">Store Admin</p>
+                <p className="profile-role">Admin</p>
+              </div>
             </div>
-          </div>
 
-          {isDropdownOpen && (
-            <div className="profile-dropdown">
-              <div className="dropdown-item" onClick={handleProfile}>
-                <span className="dropdown-icon">👤</span>{" "}
-                <span>My Profile</span>
+            {isDropdownOpen && (
+              <div className="profile-dropdown">
+                <div className="dropdown-item" onClick={handleProfile}>
+                  <span className="dropdown-icon">👤</span>{" "}
+                  <span>My Profile</span>
+                </div>
+                <div className="dropdown-divider"></div>
+                <div className="dropdown-item" onClick={handleLogout}>
+                  <span className="dropdown-icon">🚪</span> <span>Logout</span>
+                </div>
               </div>
-              <div className="dropdown-divider"></div>
-              <div className="dropdown-item" onClick={handleLogout}>
-                <span className="dropdown-icon">🚪</span> <span>Logout</span>
-              </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
         )}
       </div>
     </div>
