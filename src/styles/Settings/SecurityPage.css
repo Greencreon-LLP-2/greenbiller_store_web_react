@@ -1,0 +1,203 @@
+.security-container {
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f5f5f5;
+}
+
+.security-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.security-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.security-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.security-row:last-child {
+    border-bottom: none;
+}
+
+.security-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.security-info.password-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    color: #fff;
+   
+}
+
+.security-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+}
+
+.security-info p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.security-icon {
+    font-size: 20px;
+    color: #888;
+   
+}
+
+/* --- BUTTONS --- */
+
+.security-buttons-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.security-buttons-n {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: capitalize;
+    color: white;
+}
+
+/* Orange buttons */
+.btn-orange {
+    background-color: #ff8c00;
+     border-color: #ff8c00;
+   color: #fff;
+   font-size: 15px;
+border-width: 0;
+border-radius: 2px;
+font-style: normal;
+  padding: 10px 20px; 
+}
+
+/* Red "Disable" and "Remove" buttons */
+.btn-red {
+    color: #df2538;
+    text-shadow: #df2538;
+    background-color: #fff;
+    border-color: #fff;
+     text-shadow: #f5f5f5;
+     font-weight :bold;
+     border-width: 0;
+}
+
+/* Connected button*/
+.btn-connected {
+    background-color:#fff;
+    color: #666;
+    cursor:default;
+    border: 1px solid #28a745;
+    padding: 7px 15px;
+  color: #28a745;
+   border-radius: 10px;
+ font-weight: bold;
+}
+
+.btn-connect{
+ background-color:#fff;
+    color: #666;
+    cursor:default;
+    border: 1px solid #28a745;
+    padding: 7px 15px;
+  color: #28a745;
+   border-radius: 10px;
+ font-weight: bold;
+
+}
+.btn-Enable{
+ background-color:#fff;
+    color: #666;
+    cursor:default;
+    border: 1px solid #28a745;
+    padding: 7px 15px;
+  color: #28a745;
+   border-radius: 10px;
+ font-weight: bold;
+
+}
+
+.btn-Disable{
+    background-color: #d8293b;
+    color: white;
+    cursor: default;
+    border: 1px solid #df2538;
+    padding: 9px 18px;
+    gap: 100px;
+}
+/* Custom toggle switch */
+.security-toggle {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.security-toggle.enabled {
+    background-color: #28a745;
+}
+
+.security-toggle::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    background-color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.security-toggle.enabled::before {
+    transform: translateX(20px);
+}
+
+.checkmark-icon {
+    width: 15px;
+        height: 15px;
+        border: 2px solid #28a745;
+        background-color: #28a745;
+        color: #fff;
+        border-radius: 50%;
+        display: flex; /* Use flexbox for easy centering of the checkmark */
+        justify-content: center;
+        align-items: center;
+        position: relative;
+font-weight: lighter;
+
+ 
+}
