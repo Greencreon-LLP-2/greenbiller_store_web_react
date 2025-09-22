@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Search,
-  XCircle,
-  Mail,
   Bell,
   Settings,
   Maximize,
@@ -16,13 +13,11 @@ import "../styles/Navbar.css";
 
 const Navbar = ({ toggleMobileSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const dropdownRef = useRef(null);
-  const searchRef = useRef(null);
   const notificationsRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
@@ -31,12 +26,10 @@ const Navbar = ({ toggleMobileSidebar }) => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
-      // Close mobile menu when resizing to desktop
       if (window.innerWidth >= 768) {
         setIsMobileMenuOpen(false);
       }
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -50,9 +43,6 @@ const Navbar = ({ toggleMobileSidebar }) => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setIsDropdownOpen(false);
-      }
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
-        setIsSearchOpen(false);
       }
       if (
         notificationsRef.current &&
@@ -87,8 +77,6 @@ const Navbar = ({ toggleMobileSidebar }) => {
     { id: 2, text: "Stock level low", time: "10 mins ago" },
   ];
 
-  const recentSearches = ["Products", "Sales", "Orders"];
-
   return (
     <div className="navbar">
       <div className="navbar-content">
@@ -102,54 +90,10 @@ const Navbar = ({ toggleMobileSidebar }) => {
         {/* ---- Feature Icons ---- */}
         {!isMobile && (
           <ul className="nav-items">
-            {/* Search */}
-            <li className="nav-item" ref={searchRef}>
-              <button
-                className="icon-btn"
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-              >
-                <Search size={18} />
-              </button>
-              {isSearchOpen && (
-                <div className="dropdown-panel search-panel">
-                  <div className="search-header">
-                    <input type="text" placeholder="Search..." autoFocus />
-                    <XCircle
-                      size={16}
-                      className="clear-icon"
-                      onClick={() => setIsSearchOpen(false)}
-                    />
-                  </div>
-                  <div className="recent-section">
-                    <h6>Recent Searches</h6>
-                    <ul>
-                      {recentSearches.map((s, i) => (
-                        <li key={i}>{s}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="help-section">
-                    <h6>
-                      <HelpCircle size={14} /> Help
-                    </h6>
-                    <p>How to update inventory</p>
-                  </div>
-                </div>
-              )}
-            </li>
-
             {/* Fullscreen */}
             <li className="nav-item">
               <button className="icon-btn" onClick={toggleFullscreen}>
                 <Maximize size={18} />
-              </button>
-            </li>
-
-            {/* Mail */}
-            <li className="nav-item">
-              <button className="icon-btn">
-                <Mail size={18} />
-                <span className="badge">1</span>
               </button>
             </li>
 
@@ -160,7 +104,7 @@ const Navbar = ({ toggleMobileSidebar }) => {
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
               >
                 <Bell size={18} />
-                <span className="badge">{notifications.length}</span>
+                {/* <span className="badge">{notifications.length}</span> */}
               </button>
               {isNotificationsOpen && (
                 <div className="dropdown-panel notification-panel">
@@ -217,14 +161,17 @@ const Navbar = ({ toggleMobileSidebar }) => {
           </div>
         )}
 
-        {/* ---- Existing Profile untouched ---- */}
+        {/* ---- Profile ---- */}
         {!isMobile && (
           <div className="navbar-profile-container" ref={dropdownRef}>
             <div
               className="navbar-profile"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              <i className="bi bi-person-square text-2xl"></i>
+              <i
+                className="bi bi-person-square"
+                style={{ fontSize: "2rem" }}
+              ></i>
               <div className="profile-info">
                 <p className="profile-name">Store Admin</p>
                 <p className="profile-role">Admin</p>

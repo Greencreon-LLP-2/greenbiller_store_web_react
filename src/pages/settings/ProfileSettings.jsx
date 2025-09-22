@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/ProfileSettings.css"; // keep using the same CSS
+import "../../styles/settings/ProfileSettings.css"; // keep using the same CSS
 
 const ProfileSettings = () => {
   const [profileImage, setProfileImage] = useState(null);

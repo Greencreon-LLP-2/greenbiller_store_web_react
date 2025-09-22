@@ -116,17 +116,6 @@
   position: relative;
 }
 
-.badge {
-  position: absolute;
-  top: -4px;
-  right: -6px;
-  background: #f44336;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 0.65rem;
-  padding: 2px 5px;
-}
-
 /* Panels */
 .dropdown-panel {
   position: absolute;
@@ -225,3 +214,25 @@
     display: none;
   }
 }
+
+/* Navbar.css */
+.navbar-profile-container {
+  display: flex;
+  align-items: center;       /* vertically center everything */
+  justify-content: center;   /* horizontally center if needed */
+  height: 100%;              /* take full navbar height */
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;       /* center icon + text vertically */
+  gap: 0.5rem;               /* space between icon and text */
+  cursor: pointer;
+}
+
+.navbar-profile i {
+  display: flex;             /* makes icon follow flex alignment */
+  align-items: center;
+  justify-content: center;
+}
+
