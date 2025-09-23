@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Sidebar.css";
-import logo1 from "../assets/logo1.png";
+import logo from "../assets/logo.png";
 import dashboardIcon from "../assets/dashboard_icon.png";
 
 const Sidebar = ({ isMobileOpen, toggleMobileSidebar }) => {
@@ -78,7 +78,7 @@ const Sidebar = ({ isMobileOpen, toggleMobileSidebar }) => {
 
       <div className={`sidebar ${isMobileOpen ? "mobile-open" : ""}`}>
         <div className="sidebar-header">
-          <img src={logo1} alt="Green Biller Logo" className="sidebar-logo" />
+          <img src={logo} alt="Green Biller Logo" className="sidebar-logo" />
           {isMobile && (
             <button className="sidebar-close" onClick={toggleMobileSidebar}>
               <i className="bi bi-x-lg"></i>
