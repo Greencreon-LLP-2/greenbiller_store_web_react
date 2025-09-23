@@ -1,5 +1,6 @@
 // store/slices/userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
+import avatarImage from '../../assets/image.png';
 
 const initialState = {
   users: [
@@ -11,7 +12,7 @@ const initialState = {
       role: 'Admin',
       createdOn: '19 Jan 2023',
       status: 'Inactive',
-      avatar: 'assets/img/users/user-23.jpg'
+      avatar: avatarImage
     },
     {
       id: 1,
@@ -21,7 +22,7 @@ const initialState = {
       role: 'Admin',
       createdOn: '19 Jan 2023',
       status: 'active',
-      avatar: 'assets/img/users/user-23.jpg'
+      avatar: avatarImage
     },
     {
       id: 1,
@@ -31,7 +32,7 @@ const initialState = {
       role: 'Admin',
       createdOn: '19 Jan 2023',
       status: 'Inactive',
-      avatar: 'assets/img/users/user-23.jpg'
+      avatar: avatarImage
     },
     {
       id: 1,
@@ -41,7 +42,7 @@ const initialState = {
       role: 'Admin',
       createdOn: '19 Jan 2023',
       status: 'active',
-      avatar: 'assets/img/users/user-23.jpg'
+      avatar: avatarImage
     },
     // Add other mock users from your HTML
   ],

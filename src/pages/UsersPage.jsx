@@ -1,8 +1,8 @@
-// pages/UsersPage.jsx
 import React, { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
+import avatarImage from '../assets/image.png';
 import {
   FiSearch,
   FiEdit,
@@ -13,7 +13,6 @@ import {
   FiEye,
   FiPlusCircle
 } from 'react-icons/fi';
-import { FaFilePdf, FaFileExcel } from 'react-icons/fa';
 import '../styles/UsersPage.css';
 
 const UsersPage = () => {
@@ -52,10 +51,10 @@ const UsersPage = () => {
       name: 'User Name',
       selector: row => (
         <div className="userimgname">
-          <div className="userslist-img bg-img">
-            <img src={row.avatar} alt="user" />
+          <div className="userslist-img">
+            <img src={row.avatar} alt={row.name} />
           </div>
-          <div>
+           <div className="username-text">
             <span>{row.name}</span>
           </div>
         </div>
@@ -87,7 +86,7 @@ const UsersPage = () => {
     {
       name: 'Status',
       selector: row => (
-        <span className={`badge ${row.status === 'Active' ? 'badge-linesuccess' : 'badge-linedanger'}`}>
+        <span className={`badge ${row.status.toLowerCase() === 'active' ? 'badge-linesuccess' : 'badge-linedanger'}`}>
           {row.status}
         </span>
       ),
@@ -126,12 +125,8 @@ const UsersPage = () => {
       <p className="subtitle">Manage Your Users</p>
 
       <div className="actions">
-        <button className="btn pdf">
-          <FaFilePdf />
-        </button>
-        <button className="btn excel">
-          <FaFileExcel />
-        </button>
+        <button className="btn pdf">PDF</button>
+        <button className="btn excel">EXCEL</button>
         <button className="btn print">Print</button>
         <button className="btn refresh">
           <FiRotateCw />
