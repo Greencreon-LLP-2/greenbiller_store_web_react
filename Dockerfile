@@ -1,4 +1,4 @@
-# Use Node.js as base image
+# Use official Node LTS
 FROM node:20-alpine
 
 # Set working directory
@@ -10,11 +10,25 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy all source code
+# Copy all source files
 COPY . .
+
+# Fix CSS paths (Linux case-sensitive)
+RUN mkdir -p src/pages/settings && \
+    mv src/styles/Settings/ProfileSettings.css src/pages/settings/ 2>/dev/null || true && \
+    mv src/styles/settings/SecurityPage.css src/pages/settings/ 2>/dev/null || true && \
+    sed -i 's|../../styles/Settings/ProfileSettings.css|./ProfileSettings.css|' src/pages/settings/ProfileSettings.jsx || true && \
+    sed -i 's|../../styles/settings/SecurityPage.css|./SecurityPage.css|' src/pages/settings/SecurityPage.jsx || true
+
+# Build React app
+RUN npm run build && \
+    if [ -d "build" ]; then mv build dist; fi
+
+# Install serve package globally to serve build
+RUN npm install -g serve
 
 # Expose port 3011
 EXPOSE 3011
 
-# Start the React app on port 3011
-CMD ["npm", "start", "--", "--port", "3011"]
+# Start production server
+CMD ["serve", "-s", "dist", "-l", "3011"]
