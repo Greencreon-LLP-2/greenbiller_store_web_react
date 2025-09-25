@@ -1,16 +1,24 @@
-# Stage 1: Build React App
-FROM node:18-alpine AS build
+# Base image
+FROM node:18-alpine
+
+# Set working directory
 WORKDIR /app
+
+# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
+
+# Copy full source
 COPY . .
+
+# Build React app
 RUN npm run build
 
-# Stage 2: Minimal container just to hold files
-FROM alpine:latest
-WORKDIR /var/www/static_html/greenbiller_store_web_react
-COPY --from=build /app/dist .
+# Install serve package to serve React build
+RUN npm install -g serve
 
-# Keep container alive (no nginx)
+# Expose port
 EXPOSE 3011
-CMD ["sh", "-c", "while :; do sleep 1; done"]
+
+# Command to run React app
+CMD ["serve", "-s", "dist", "-l", "3011"]
