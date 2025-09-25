@@ -1,0 +1,125 @@
+/* Grid */
+
+/* Section heading */
+.connected-apps-section {
+  margin-bottom: 30px;
+}
+
+.section-heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.underline {
+  width: 180px;
+  height: 3px;
+  background-color: #007bff; 
+  margin-bottom: 20px;
+  border-radius: 2px;
+}
+.apps-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0px;
+}
+
+.apps-col {
+  flex: 0 0 33.33%; /* 3 per row */
+  max-width: 33.33%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Card */
+.connected-app-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.connected-app-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.connected-app-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* App Icon */
+.app-icon img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Connect Button */
+.connect-btn a {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  background: #4CAF50;
+  transition: 0.3s;
+}
+
+.connect-btn a:hover {
+  background: #43a047;
+}
+
+/* App Title */
+.security-title h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Toggle Switch */
+.check {
+  display: none;
+}
+
+.checktoggle {
+  width: 45px;
+  height: 22px;
+  background: #ddd;
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: inline-block;
+}
+
+.checktoggle:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.check:checked + .checktoggle {
+  background: #4CAF50;
+}
+
+.check:checked + .checktoggle:before {
+  transform: translateX(22px);
+}
