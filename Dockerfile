@@ -1,34 +1,20 @@
-# Use official Node LTS
-FROM node:20-alpine
+# Use official Node.js image
+FROM node:18
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json first (better for caching)
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all source files
+# Copy the rest of the application
 COPY . .
 
-# Fix CSS paths (Linux case-sensitive)
-RUN mkdir -p src/pages/settings && \
-    mv src/styles/Settings/ProfileSettings.css src/pages/settings/ 2>/dev/null || true && \
-    mv src/styles/settings/SecurityPage.css src/pages/settings/ 2>/dev/null || true && \
-    sed -i 's|../../styles/Settings/ProfileSettings.css|./ProfileSettings.css|' src/pages/settings/ProfileSettings.jsx || true && \
-    sed -i 's|../../styles/settings/SecurityPage.css|./SecurityPage.css|' src/pages/settings/SecurityPage.jsx || true
-
-# Build React app
-RUN npm run build && \
-    if [ -d "build" ]; then mv build dist; fi
-
-# Install serve package globally to serve build
-RUN npm install -g serve
-
-# Expose port 3011
+# Expose port 3011 for Vite dev server
 EXPOSE 3011
 
-# Start production server
-CMD ["serve", "-s", "dist", "-l", "3011"]
+# Start React app in dev mode
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3011"]
