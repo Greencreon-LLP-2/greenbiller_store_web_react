@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/settings/SecurityPage.css";
+import "@/styles/settings/SecurityPage.css";
 import { FaEnvelope, FaGoogle, FaMobileAlt, FaLock, FaCheck } from "react-icons/fa";
 
 const SecurityPage = () => {
