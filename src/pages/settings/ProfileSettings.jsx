@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+
+=======
 import "@/styles/settings/ProfileSettings.css";
+
 
 const ProfileSettings = () => {
   const [profileImage, setProfileImage] = useState(null);

@@ -23,9 +23,13 @@ import ExpenseForm from "../pages/ExpenseForm";
 import PurchasePage from "../pages/PurchasePage";
 import AddPurchase from "../pages/AddPurchase";
 import Profile from "../pages/Profile";
-
 import ProfileSettings from "../pages/settings/ProfileSettings";
 import SecurityPage from "../pages/settings/SecurityPage";
+
+import ConnectedApps from "../pages/settings/ConnectedApps";
+import SystemSettings from "../pages/settings/SystemSettings";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -84,15 +88,20 @@ export const router = createBrowserRouter([
               { path: "add", element: <AddnewSupplier /> },
             ],
           },
-          {
-            path: "/settings",
-            element: <SettingsLayout />,
-            children: [
-              { path: "profile", element: <ProfileSettings /> },
-              { path: "security", element: <SecurityPage /> },
-              // { path: "notifications", element: <NotificationSettings /> },
-            ],
-          },
+{
+  path: "settings",
+  element: <SettingsLayout />,
+  children: [
+    { path: "profile", element: <ProfileSettings /> },
+    { path: "security", element: <SecurityPage /> },
+    { path: "connected-apps", element: <ConnectedApps /> },
+    { path: "system-settings", element: <SystemSettings /> },
+    { path: "apps", element: <ConnectedApps /> }, // redirect /settings/apps
+  ],
+},
+
+
+
           {
             // Redirect to dashboard by default
             index: true,
