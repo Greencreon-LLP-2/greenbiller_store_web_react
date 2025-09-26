@@ -1,4 +1,4 @@
-import React, { useState, useMemo, } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,14 +11,13 @@ import {
   FiRotateCw,
   FiChevronDown,
 } from "react-icons/fi";
-import { FaFilePdf, FaFileExcel } from "react-icons/fa"; // ✅ PDF & Excel icons
+import { FaFilePdf, FaFileExcel, FaUser, FaEdit } from "react-icons/fa"; // ✅ updated icons
 import "../styles/SuppliersPage.css";
 
 const SuppliersPage = () => {
   const suppliers = useSelector((state) => state.suppliers?.list || []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   // ✅ States for search & sorting
   const [search, setSearch] = useState("");
@@ -54,11 +53,7 @@ const SuppliersPage = () => {
       sortable: true,
       cell: (row) => (
         <div className="sup-name-cell">
-          <img
-            src={row.image || "https://via.placeholder.com/40"}
-            alt={row.name}
-            className="sup-img"
-          />
+          <FaUser className="sup-person-icon" /> {/* 👤 Person icon */}
           <span>{row.name}</span>
         </div>
       ),
@@ -95,8 +90,10 @@ const SuppliersPage = () => {
             className="sup-btn-icon sup-edit"
             onClick={() => alert(`Edit supplier: ${row.name}`)}
           >
-            ✏
+            <FaEdit />
           </button>
+
+
 
           {/* Delete */}
           <button
@@ -118,33 +115,39 @@ const SuppliersPage = () => {
           <h4>Supplier List</h4>
           <p>Manage Your Supplier</p>
         </div>
-        <div className="sup-header-actions">
-          {/* PDF & Excel */}
-          <button className="sup-btn-icon sup-pdf">
-            <FaFilePdf />
-          </button>
-          <button className="sup-btn-icon sup-excel">
-            <FaFileExcel />
-          </button>
+       <div className="sup-header-actions">
+  {/* PDF & Excel */}
+  <button className="sup-btn-icon sup-pdf">
+    <FaFilePdf />
+  </button>
+  <button className="sup-btn-icon sup-excel">
+    <FaFileExcel />
+  </button>
 
-          {/* Refresh */}
-          <button className="sup-btn-icon">
-            <FiRotateCw />
-          </button>
+  {/* Print */}
+  <button className="sup-btn-print">
+    Print
+  </button>
 
-          {/* Dropdown */}
-          <button className="sup-btn-icon">
-            <FiChevronDown />
-          </button>
+  {/* Refresh */}
+  <button className="sup-btn-icon sup-refresh">
+    <FiRotateCw />
+  </button>
 
-          {/* Add Supplier */}
-          <button 
-          className="sup-btn-primary" 
-          onClick={() => navigate("/suppliers/add")} 
-        >
-          + Add New Supplier
-        </button>
-        </div>
+  {/* Dropdown */}
+  <button className="sup-btn-icon">
+    <FiChevronDown />
+  </button>
+
+  {/* Add Supplier */}
+  <button
+    className="sup-btn-primary"
+    onClick={() => navigate("/suppliers/add")}
+  >
+    + Add New Supplier
+  </button>
+</div>
+
       </div>
 
       {/* Data Table */}
@@ -186,7 +189,7 @@ const SuppliersPage = () => {
             pagination
             striped
             responsive
-            selectableRows // ✅ Adds checkboxes
+            selectableRows
             selectableRowsHighlight
           />
         </div>

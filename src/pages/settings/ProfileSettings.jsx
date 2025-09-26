@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import "../../styles/settings/ProfileSettings.css"; // keep using the same CSS
+
+=======
+import "@/styles/settings/ProfileSettings.css";
+
 
 const ProfileSettings = () => {
   const [profileImage, setProfileImage] = useState(null);
@@ -11,6 +14,10 @@ const ProfileSettings = () => {
     }
   };
 
+  const handleRemoveImage = () => {
+    setProfileImage(null);
+  };
+
   return (
     <>
       <h3 className="section-title">Employee Information</h3>
@@ -19,7 +26,16 @@ const ProfileSettings = () => {
       <div className="profile-upload">
         <div className="profile-photo-box">
           {profileImage ? (
-            <img src={profileImage} alt="Profile" />
+            <div className="photo-wrapper">
+              <img src={profileImage} alt="Profile" />
+              <button
+                type="button"
+                className="remove-btn"
+                onClick={handleRemoveImage}
+              >
+                ❌
+              </button>
+            </div>
           ) : (
             <div className="photo-placeholder">
               <span>📷</span>
@@ -27,6 +43,7 @@ const ProfileSettings = () => {
             </div>
           )}
         </div>
+
         <div className="upload-controls">
           <label className="upload-btn">
             Change Image

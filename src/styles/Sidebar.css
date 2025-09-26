@@ -171,3 +171,74 @@
     transform: translateX(0);
   }
 }
+
+.nav-item.logout {
+  color: #d9534f; /* red-ish */
+  cursor: pointer;
+}
+
+.nav-item.logout:hover {
+  background-color: #f8d7da;
+}
+
+/* Ensure text label visible on mobile */
+@media (max-width: 767px) {
+  .sidebar {
+    width: 250px; /* full width */
+    padding: 20px;
+    background-color: #fff;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Make sure nav-item text isn't hidden */
+  .nav-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .nav-icon {
+    margin-right: 12px;
+    min-width: 24px; /* prevent overlap */
+  }
+
+  .nav-label {
+    display: inline-block; /* ensure always visible */
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  /* Dropdown content shift */
+  .dropdown-content {
+    margin-left: 20px;
+  }
+}
+
+
+.sidebar-footer {
+  padding: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #e0e0e0;
+  margin-top: auto; /* push footer to bottom */
+}
+
+.sidebar-footer .footer-link {
+  margin: 0;
+  color: #28a745; /* Green color for greenbiller.com */
+  font-weight: bold;
+}
+
+.sidebar-footer .footer-version {
+  margin: 0;
+  color: #999;
+  font-size: 11px;
+}

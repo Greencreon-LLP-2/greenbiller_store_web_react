@@ -16,6 +16,36 @@
   color: #666;
 }
 
+.sup-btn-icon.sup-pdf {
+  color:#e63946;
+  font-size:20px;
+  border:1px solid #e63946;
+  background: #fff5f5;
+}
+
+.sup-btn-icon.sup-pdf:hover{
+
+  background :#e63946;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(230,57.70,0.4);
+}
+
+.sup-btn-icon.sup-excel {
+  color: #2f9e44;
+  font-size: 20px;
+  border: 1px solid #2f9e44;
+  background : #f0fff4;
+}
+
+.sup-btn-icon.sup-excel:hover{
+
+  background: #2f9e44;
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 4px 10px rgba(47,158,68,0.4);
+}
+
 /* Header actions */
 .sup-header-actions {
   display: flex;
@@ -194,3 +224,45 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(255, 127, 80, 0.35);
 }
+.sup-name-cell{
+  display: flex;
+  align-items: center;
+  gap:8px;
+}
+
+.sup-person-icon {
+  font-size:18px;
+  color: #3b82f6;
+}
+
+/* Refresh Button */
+.sup-header-actions .sup-refresh {
+  background-color: #4b5563; /* dark gray */
+  border: none;
+  color: #fff; /* icon in white */
+}
+
+.sup-header-actions .sup-refresh:hover {
+  background-color: #374151; /* even darker gray on hover */
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Print Button */
+.sup-btn-print {
+  background-color: #2563eb; /* blue background */
+  color: #fff;               /* white text */
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sup-btn-print:hover {
+  background-color: #1d4ed8; /* darker blue on hover */
+}
+
