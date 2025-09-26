@@ -1,0 +1,142 @@
+.settings-container {
+  padding: 20px;
+  background: #f5f6fa;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+.settings-heading {
+  font-size: 23px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.settings-heading::after {
+  content: "";
+  display: block;
+  width: 180px;       
+  height: 2px;       
+  background-color: #000000;
+  margin-top: 5px;   
+  border-radius: 2px;
+}
+
+
+.settings-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 3/3 grid */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.settings-card {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #666;
+  flex-grow: 1;
+  margin-top: 15px;
+}
+
+.card-btn {
+  margin-top: 5px;
+  padding: 10px 14px;
+  background: #d4d9df;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.card-btn:hover {
+  background: #0056b3;
+}
+
+
+.checktoggle {
+  position: relative;
+  display: inline-block;
+  width: 28px;   
+  height: 16px;  
+}
+
+.checktoggle input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ddd;
+  border-radius: 30px;
+  transition: background 0.3s ease;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;   
+  height: 12px;  
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* Checked State */
+.checktoggle input:checked + .slider {
+  background-color: #08e05b;
+}
+
+.checktoggle input:checked + .slider:before {
+  transform: translateX(12px);
+}
