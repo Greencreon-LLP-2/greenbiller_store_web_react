@@ -1,12 +1,10 @@
-/* Page container */
 .expense-page {
   padding: 20px;
   font-family: "Segoe UI", sans-serif;
   background-color: #f5f7f9;
-  min-height: 100vh;
 }
 
-/* Page Header */
+/* Header */
 .expense-header {
   display: flex;
   justify-content: space-between;
@@ -22,115 +20,159 @@
   margin: 0;
   font-size: 22px;
   font-weight: 600;
-  color: #333;
 }
 
 .expense-header p {
-  margin: 5px 0 0 0;
+  margin: 0;
   color: #666;
-  font-size: 14px;
 }
 
-/* Header actions */
+/* Header Actions */
 .expense-header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
+/* Generic Button */
 .expense-btn-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border: none;
   border-radius: 6px;
-  background: none;
   cursor: pointer;
-  font-size: 18px;
-  color: #555;
+  font-size: 14px;
+  gap: 5px;
+  color: white;
+  font-weight: bold;
   transition: all 0.2s ease;
 }
 
-.expense-btn-icon:hover {
-  background-color: #f3f4f6;
-  color: #ff7f50;
-  transform: translateY(-2px);
+/* PDF Button */
+.expense-btn-icon.expense-pdf {
+  background-color: #f44336;
 }
 
-.expense-btn-primary {
-  background: #ff7f50;
+.expense-btn-icon.expense-pdf:hover {
+  background-color: #fff;
+  color: #f44336;
+  border: 1px solid #f44336;
+}
+
+/* Excel Button */
+.expense-btn-icon.expense-excel {
+  background-color: #4caf50;
+}
+
+.expense-btn-icon.expense-excel:hover {
+  background-color: #fff;
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+/* Print Button */
+.expense-btn-print {
+  background-color: #2196f3;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
   border: none;
-  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.expense-btn-print:hover {
+  background-color: #fff;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+}
+
+/* Refresh Button */
+.expense-btn-icon.expense-refresh {
+  background-color: #9e9e9e;
+}
+
+.expense-btn-icon.expense-refresh:hover {
+  background-color: #fff;
+  color: #9e9e9e;
+  border: 1px solid #9e9e9e;
+}
+
+/* Add New Expense Button */
+.expense-btn-primary {
+  background-color: #ff5722;
+  border: none;
+  padding: 8px 12px;
   border-radius: 6px;
   color: #fff;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .expense-btn-primary:hover {
-  background-color: #ff6333;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(255, 127, 80, 0.35);
+  background-color: #fff;
+  color: #ff5722;
+  border: 1px solid #ff5722;
 }
 
-/* Search box */
+/* Search Box */
 .expense-search-box {
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   background: #fff;
-  width: 300px;
 }
 
 .expense-search-box input {
   border: none;
   outline: none;
   margin-left: 8px;
-  width: 100%;
-  font-size: 14px;
+  width: 200px;
 }
 
 .expense-search-icon {
   color: #888;
 }
 
+/* Filter Button */
 .expense-btn-filter {
-  background: #ff7f50;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #ced4da;
   border-radius: 6px;
+  padding: 8px 12px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  color: #000;
 }
 
+/* Sort Dropdown */
 .expense-sort-dropdown {
   border-radius: 6px;
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
+  padding: 6px 12px;
+  border: 1px solid #ced4da;
+  background: #fff;
 }
 
-/* Action buttons */
+/* Table Action Buttons */
 .expense-action-btns {
   display: flex;
   gap: 8px;
 }
 
 .expense-btn-icon.expense-edit {
-  color: #f59e0b; /* Orange */
+  color: #f59e0b;
+  background: none;
 }
 
 .expense-btn-icon.expense-danger {
-  color: #ef4444; /* Red */
+  color: #ef4444;
+  background: none;
 }
 
 /* Card */
@@ -138,29 +180,28 @@
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
 }
 
 .expense-card-body {
   padding: 20px;
 }
 
-/* Filters row */
+/* Filters */
 .expense-filters {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .expense-filter-actions {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* Total Amount */
+/* Totals */
 .expense-total {
   display: flex;
   justify-content: flex-end;
@@ -175,70 +216,53 @@
 
 .expense-total-amount {
   margin-left: 10px;
-  color: #ff7f50;
+  color: #ff5722;
 }
 
-/* DataTable overrides */
-.rdt_Table {
-  border: 1px solid #eee;
-  border-radius: 8px;
-}
-
-.rdt_TableRow {
-  background-color: transparent !important;
-  min-height: 48px;
-  border-bottom: 1px solid #eee;
-}
-
-.rdt_TableRow:hover {
-  background-color: #f9f9f9 !important;
-}
-
-.rdt_TableCell {
-  padding: 16px 12px;
-  font-size: 14px;
-  color: #444;
-}
-
-.rdt_TableCol {
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px;
-  color: #333;
-  background-color: #f8f9fa;
-}
-
-.rdt_TableCol input[type="checkbox"],
-.rdt_TableCell input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-}
-
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
-  .expense-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-  
   .expense-header-actions {
-    width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 6px;
   }
-  
-  .expense-filters {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .expense-search-box {
+
+  .expense-search-box input {
     width: 100%;
   }
-  
+
   .expense-filter-actions {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .expense-page {
+    padding: 10px;
+  }
+
+  .expense-card-body {
+    padding: 15px;
+  }
+
+  .expense-btn-icon,
+  .expense-btn-print,
+  .expense-btn-primary {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .expense-header-actions {
+    gap: 5px;
+  }
+
+  .expense-filters {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .expense-filter-actions {
+    flex-direction: column;
+    gap: 5px;
   }
 }

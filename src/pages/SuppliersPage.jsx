@@ -116,13 +116,12 @@ const SuppliersPage = () => {
           <p>Manage Your Supplier</p>
         </div>
        <div className="sup-header-actions">
-  {/* PDF & Excel */}
   <button className="sup-btn-icon sup-pdf">
-    <FaFilePdf />
-  </button>
-  <button className="sup-btn-icon sup-excel">
-    <FaFileExcel />
-  </button>
+  PDF
+</button>
+<button className="sup-btn-icon sup-excel">
+  Excel
+</button>
 
   {/* Print */}
   <button className="sup-btn-print">
@@ -132,11 +131,6 @@ const SuppliersPage = () => {
   {/* Refresh */}
   <button className="sup-btn-icon sup-refresh">
     <FiRotateCw />
-  </button>
-
-  {/* Dropdown */}
-  <button className="sup-btn-icon">
-    <FiChevronDown />
   </button>
 
   {/* Add Supplier */}

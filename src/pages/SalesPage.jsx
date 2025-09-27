@@ -6,13 +6,9 @@ import DataTable from "react-data-table-component";
 import { deleteSale } from "../store/slices/salesSlice";
 import {
   FiSearch,
-  FiEdit,
-  FiTrash2,
   FiFilter,
   FiRotateCw,
-  FiChevronDown,
 } from "react-icons/fi";
-import { FaFilePdf, FaFileExcel } from "react-icons/fa";
 import "../styles/SalesPage.css";
 
 const SalesPage = () => {
@@ -20,7 +16,6 @@ const SalesPage = () => {
   const sales = useSelector((state) => state.sales?.list || []);
   const dispatch = useDispatch();
 
-  // States for search & sorting
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Newest");
 
@@ -47,7 +42,7 @@ const SalesPage = () => {
     return data;
   }, [sales, search, sortOrder]);
 
-  // Calculate total amount and total paid amount
+  // Totals
   const [totalAmount, totalPaid] = useMemo(() => {
     const total = filteredSales.reduce(
       (sum, sale) => sum + parseFloat(sale.total || 0),
@@ -60,7 +55,7 @@ const SalesPage = () => {
     return [total, paid];
   }, [filteredSales]);
 
-  // Columns for DataTable
+  // Columns
   const columns = [
     {
       name: "#",
@@ -117,13 +112,13 @@ const SalesPage = () => {
             className="sales-btn-icon sales-edit"
             onClick={() => alert(`Edit sale: ${row.reference}`)}
           >
-            <FiEdit />
+            Edit
           </button>
           <button
             className="sales-btn-icon sales-danger"
             onClick={() => dispatch(deleteSale(row.id))}
           >
-            <FiTrash2 />
+            Delete
           </button>
         </div>
       ),
@@ -135,27 +130,19 @@ const SalesPage = () => {
       <h2 className="title">Sales</h2>
       <p className="subtitle">Manage your sales</p>
 
-      {/* ✅ Actions OUTSIDE sales-content */}
       <div className="actions">
-        <button className="btn pdf">
-          <FaFilePdf />
-        </button>
-        <button className="btn excel">
-          <FaFileExcel />
-        </button>
+        <button className="btn pdf">PDF</button>
+        <button className="btn excel">EXCEL</button>
         <button className="btn print">Print</button>
         <button className="btn refresh">
-          <FiRotateCw />
-        </button>
-        <button className="btn collapse">
-          <FiChevronDown />
-        </button>
+                  <FiRotateCw />
+                </button> 
+        <button className="btn collapse">Collapse</button>
         <button className="btn add" onClick={() => navigate("/sales/add")}>
-          + Add New Sales
+          Add New Sales
         </button>
       </div>
 
-      {/* White card content */}
       <div className="sales-content">
         <div className="sales-filters">
           <div className="sales-search-box">

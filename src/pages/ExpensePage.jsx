@@ -9,22 +9,17 @@ import {
   FiTrash2,
   FiFilter,
   FiRotateCw,
-  FiChevronDown,
 } from "react-icons/fi";
-import { FaFilePdf, FaFileExcel } from "react-icons/fa";
 import "../styles/Expense.css";
 
 const ExpensePage = () => {
   const expenses = useSelector((state) => state.expenses?.list || []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
 
-  // States for search & sorting
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Newest");
 
-  // Filter + Sort
   const filteredExpenses = useMemo(() => {
     let data = expenses.filter(
       (e) =>
@@ -34,26 +29,21 @@ const ExpensePage = () => {
         e.note.toLowerCase().includes(search.toLowerCase()) ||
         e.createdBy.toLowerCase().includes(search.toLowerCase())
     );
-
     if (sortOrder === "Newest") {
-      data = [...data].sort(
-        (a, b) => new Date(b.date) - new Date(a.date)
-      );
+      data = [...data].sort((a, b) => new Date(b.date) - new Date(a.date));
     } else if (sortOrder === "Oldest") {
-      data = [...data].sort(
-        (a, b) => new Date(a.date) - new Date(b.date)
-      );
+      data = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
     }
-
     return data;
   }, [expenses, search, sortOrder]);
 
-  // Calculate total amount
   const totalAmount = useMemo(() => {
-    return filteredExpenses.reduce((sum, expense) => sum + parseFloat(expense.amount || 0), 0);
+    return filteredExpenses.reduce(
+      (sum, expense) => sum + parseFloat(expense.amount || 0),
+      0
+    );
   }, [filteredExpenses]);
 
-  // Columns for DataTable
   const columns = [
     {
       name: "Date",
@@ -61,51 +51,29 @@ const ExpensePage = () => {
       sortable: true,
       cell: (row) => new Date(row.date).toLocaleDateString(),
     },
-    {
-      name: "Category",
-      selector: (row) => row.category,
-      sortable: true,
-    },
-    {
-      name: "Reference No.",
-      selector: (row) => row.referenceNo,
-    },
-    {
-      name: "Expense for",
-      selector: (row) => row.expenseFor,
-    },
+    { name: "Category", selector: (row) => row.category, sortable: true },
+    { name: "Reference No.", selector: (row) => row.referenceNo },
+    { name: "Expense for", selector: (row) => row.expenseFor },
     {
       name: "Amount",
       selector: (row) => row.amount,
       sortable: true,
       cell: (row) => `$${parseFloat(row.amount).toFixed(2)}`,
     },
-    {
-      name: "Account",
-      selector: (row) => row.account,
-    },
-    {
-      name: "Note",
-      selector: (row) => row.note,
-    },
-    {
-      name: "Created by",
-      selector: (row) => row.createdBy,
-    },
+    { name: "Account", selector: (row) => row.account },
+    { name: "Note", selector: (row) => row.note },
+    { name: "Created by", selector: (row) => row.createdBy },
     {
       name: "Action",
       right: true,
       cell: (row) => (
         <div className="expense-action-btns">
-          {/* Edit */}
           <button
             className="expense-btn-icon expense-edit"
             onClick={() => alert(`Edit expense: ${row.referenceNo}`)}
           >
             <FiEdit />
           </button>
-
-          {/* Delete */}
           <button
             className="expense-btn-icon expense-danger"
             onClick={() => dispatch(deleteExpense(row.id))}
@@ -119,47 +87,30 @@ const ExpensePage = () => {
 
   return (
     <div className="expense-page">
-      {/* Page Header */}
       <div className="expense-header">
         <div>
           <h4>Expense List</h4>
           <p>Manage Your Expenses</p>
         </div>
         <div className="expense-header-actions">
-          {/* PDF & Excel */}
-          <button className="expense-btn-icon expense-pdf">
-            <FaFilePdf />
-          </button>
-          <button className="expense-btn-icon expense-excel">
-            <FaFileExcel />
-          </button>
-
-          {/* Refresh */}
-          <button className="expense-btn-icon">
+          <button className="expense-btn-icon expense-pdf">PDF</button>
+          <button className="expense-btn-icon expense-excel">Excel</button>
+          <button className="expense-btn-print">Print</button>
+          <button className="expense-btn-icon expense-refresh">
             <FiRotateCw />
           </button>
-
-          {/* Dropdown */}
-          <button className="expense-btn-icon">
-            <FiChevronDown />
+          <button
+            className="expense-btn-primary"
+            onClick={() => navigate("/expenses/add")}
+          >
+            + Add New Expense
           </button>
-
-          {/* Add Expense */}
-          <button 
-          className="expense-btn-primary" 
-          onClick={() => navigate("/expenses/add")} 
-        >
-          + Add New Expense
-        </button>
         </div>
       </div>
 
-      {/* Data Table */}
       <div className="expense-card">
         <div className="expense-card-body">
-          {/* Search & Filter Controls */}
           <div className="expense-filters">
-            {/* Search */}
             <div className="expense-search-box">
               <FiSearch className="expense-search-icon" />
               <input
@@ -169,8 +120,6 @@ const ExpensePage = () => {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-
-            {/* Filters */}
             <div className="expense-filter-actions">
               <button className="expense-btn-filter">
                 <FiFilter />
@@ -186,7 +135,6 @@ const ExpensePage = () => {
             </div>
           </div>
 
-          {/* Table */}
           <DataTable
             columns={columns}
             data={filteredExpenses}
@@ -197,10 +145,11 @@ const ExpensePage = () => {
             selectableRowsHighlight
           />
 
-          {/* Total Amount */}
           <div className="expense-total">
             <span>Total Amount:</span>
-            <span className="expense-total-amount">${totalAmount.toFixed(2)}</span>
+            <span className="expense-total-amount">
+              ${totalAmount.toFixed(2)}
+            </span>
           </div>
         </div>
       </div>

@@ -16,64 +16,98 @@
   color: #666;
 }
 
-.sup-btn-icon.sup-pdf {
-  color:#e63946;
-  font-size:20px;
-  border:1px solid #e63946;
-  background: #fff5f5;
-}
-
-.sup-btn-icon.sup-pdf:hover{
-
-  background :#e63946;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(230,57.70,0.4);
-}
-
-.sup-btn-icon.sup-excel {
-  color: #2f9e44;
-  font-size: 20px;
-  border: 1px solid #2f9e44;
-  background : #f0fff4;
-}
-
-.sup-btn-icon.sup-excel:hover{
-
-  background: #2f9e44;
-  color:#fff;
-  transform:translateY(-2px);
-  box-shadow:0 4px 10px rgba(47,158,68,0.4);
-}
-
 /* Header actions */
 .sup-header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  margin-left: auto; /* Push to the right */
+  flex-wrap: wrap; /* Wrap buttons on small screens */
 }
 
+/* Generic button */
 .sup-btn-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border: none;
   border-radius: 6px;
-  background: none;
   cursor: pointer;
-  font-size: 18px;
-  color: #555;
+  font-size: 14px;
+  gap: 5px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s ease;
 }
 
-.sup-btn-primary {
-  background: #ff7f50;
+/* PDF Button */
+.sup-btn-icon.sup-pdf {
+  background-color: #f44336;
+}
+
+.sup-btn-icon.sup-pdf:hover {
+  background-color: #fff;
+  color: #f44336;
+  border: 1px solid #f44336;
+}
+
+/* Excel Button */
+.sup-btn-icon.sup-excel {
+  background-color: #4caf50;
+}
+
+.sup-btn-icon.sup-excel:hover {
+  background-color: #fff;
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+/* Print Button */
+.sup-btn-print {
+  background-color: #2196f3;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
   border: none;
-  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sup-btn-print:hover {
+  background-color: #fff;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+}
+
+/* Refresh Button */
+.sup-btn-icon.sup-refresh {
+  background-color: #9e9e9e;
+}
+
+.sup-btn-icon.sup-refresh:hover {
+  background-color: #fff;
+  color: #9e9e9e;
+  border: 1px solid #9e9e9e;
+}
+
+/* Add Supplier Button */
+.sup-btn-primary {
+  background-color: #ff5722;
+  border: none;
+  padding: 8px 12px;
   border-radius: 6px;
   color: #fff;
-  font-weight: 500;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sup-btn-primary:hover {
+  background-color: #fff;
+  color: #ff5722;
+  border: 1px solid #ff5722;
 }
 
 /* Search box */
@@ -97,18 +131,22 @@
   color: #888;
 }
 
+/* Filter button */
 .sup-btn-filter {
-  background: #ff7f50;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #ced4da;
   border-radius: 6px;
+  padding: 8px 12px;
   cursor: pointer;
+  color: #000;
 }
 
+/* Sort dropdown */
 .sup-sort-dropdown {
   border-radius: 6px;
-  padding: 6px;
+  padding: 6px 12px;
+  border: 1px solid #ced4da;
+  background: #fff;
 }
 
 /* Supplier image inside table */
@@ -126,28 +164,27 @@
   gap: 8px;
 }
 
+.sup-person-icon {
+  font-size: 18px;
+  color: #3b82f6;
+}
+
 /* Action buttons */
 .sup-action-btns {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
-.sup-btn-icon {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* Action colors */
 .sup-btn-icon.sup-info {
-  color: #3b82f6; /* Blue */
+  color: #17a2b8; /* Blue */
 }
+
 .sup-btn-icon.sup-edit {
-  color: #f59e0b; /* Orange */
+  color: #ffc107; /* Yellow/Orange */
 }
+
 .sup-btn-icon.sup-danger {
-  color: #ef4444; /* Red */
+  color: #dc3545; /* Red */
 }
 
 /* Card */
@@ -167,14 +204,16 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .sup-filter-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* ✅ DataTable overrides */
+/* DataTable overrides */
 .rdt_TableRow {
   background-color: transparent !important;
   min-height: 48px;
@@ -198,71 +237,60 @@
   height: 16px;
   cursor: pointer;
 }
+
 /* Header container */
 .sup-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
-/* Header actions aligned to right */
-.sup-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: auto; /* Push to the right */
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sup-header-actions {
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .sup-search-box input {
+    width: 100%;
+  }
+
+  .sup-filter-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }
 
-.sup-btn-icon:hover {
-  background-color: #f3f4f6;
-  color: #ff7f50;
-  transform: translateY(-2px);
-}
-.sup-btn-primary:hover {
-  background-color: #ff6333;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(255, 127, 80, 0.35);
-}
-.sup-name-cell{
-  display: flex;
-  align-items: center;
-  gap:8px;
-}
+@media (max-width: 576px) {
+  .sup-page {
+    padding: 10px;
+  }
 
-.sup-person-icon {
-  font-size:18px;
-  color: #3b82f6;
-}
+  .sup-card-body {
+    padding: 15px;
+  }
 
-/* Refresh Button */
-.sup-header-actions .sup-refresh {
-  background-color: #4b5563; /* dark gray */
-  border: none;
-  color: #fff; /* icon in white */
-}
+  .sup-btn-icon,
+  .sup-btn-print,
+  .sup-btn-primary {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 
-.sup-header-actions .sup-refresh:hover {
-  background-color: #374151; /* even darker gray on hover */
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
+  .sup-header-actions {
+    gap: 5px;
+  }
 
-/* Print Button */
-.sup-btn-print {
-  background-color: #2563eb; /* blue background */
-  color: #fff;               /* white text */
-  border: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
+  .sup-filters {
+    flex-direction: column;
+    gap: 8px;
+  }
 
-.sup-btn-print:hover {
-  background-color: #1d4ed8; /* darker blue on hover */
+  .sup-filter-actions {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
-

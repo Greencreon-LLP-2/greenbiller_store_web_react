@@ -9,9 +9,7 @@ import {
   FiTrash2,
   FiFilter,
   FiRotateCw,
-  FiChevronDown,
 } from "react-icons/fi";
-import { FaFilePdf, FaFileExcel } from "react-icons/fa";
 import "../styles/Purchase.css";
 
 const PurchasePage = () => {
@@ -19,11 +17,9 @@ const PurchasePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // States for search & sorting
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Newest");
 
-  // Filter + Sort
   const filteredPurchases = useMemo(() => {
     let data = purchases.filter(
       (p) =>
@@ -32,7 +28,6 @@ const PurchasePage = () => {
         p.supplierName.toLowerCase().includes(search.toLowerCase()) ||
         p.createdBy.toLowerCase().includes(search.toLowerCase())
     );
-
     if (sortOrder === "Newest") {
       data = [...data].sort(
         (a, b) => new Date(b.purchaseDate) - new Date(a.purchaseDate)
@@ -42,11 +37,9 @@ const PurchasePage = () => {
         (a, b) => new Date(a.purchaseDate) - new Date(b.purchaseDate)
       );
     }
-
     return data;
   }, [purchases, search, sortOrder]);
 
-  // Calculate total amount and total paid amount
   const [totalAmount, totalPaid] = useMemo(() => {
     const total = filteredPurchases.reduce(
       (sum, purchase) => sum + parseFloat(purchase.total || 0),
@@ -59,7 +52,6 @@ const PurchasePage = () => {
     return [total, paid];
   }, [filteredPurchases]);
 
-  // Columns for DataTable
   const columns = [
     {
       name: "Purchase Date",
@@ -137,24 +129,18 @@ const PurchasePage = () => {
           <p>Manage Your Purchases</p>
         </div>
         <div className="purchase-header-actions">
-          <button className="purchase-btn-icon purchase-pdf">
-            <FaFilePdf />
-          </button>
-          <button className="purchase-btn-icon purchase-excel">
-            <FaFileExcel />
-          </button>
-          <button className="purchase-btn-icon">
+          <button className="purchase-btn-icon purchase-pdf">PDF</button>
+          <button className="purchase-btn-icon purchase-excel">Excel</button>
+          <button className="purchase-btn-print">Print</button>
+          <button className="purchase-btn-icon purchase-refresh">
             <FiRotateCw />
           </button>
-          <button className="purchase-btn-icon">
-            <FiChevronDown />
+          <button
+            className="purchase-btn-primary"
+            onClick={() => navigate("/purchases/create")}
+          >
+            + Add New Purchase
           </button>
-          <button 
-          className="purchase-btn-primary" 
-          onClick={() => navigate("/purchases/create")} 
-        >
-          + Add New Purchase
-        </button>
         </div>
       </div>
 
