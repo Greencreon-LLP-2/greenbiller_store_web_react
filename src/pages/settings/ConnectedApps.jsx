@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/settings/ConnectedApps.css";
+import "@/styles/settings/ConnectedApps.css";
 
 import calendarImg from "../../assets/calendar.png";
 import figmaImg from "../../assets/figma.png";
