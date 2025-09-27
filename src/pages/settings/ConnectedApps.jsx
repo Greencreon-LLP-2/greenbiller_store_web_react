@@ -4,7 +4,7 @@ import "@/styles/settings/ConnectedApps.css";
 import calendarImg from "@assets/calendar.png";
 import figmaImg from "@assets/figma.png";
 import dropboxImg from "@assets/dropbox.png";
-import slackImg from "@assets/slack.png";
+import slackImg from "@assets/Slack.png";
 import githubImg from "@assets/github.png";
 import gmailImg from "@assets/gmail.png";
 
