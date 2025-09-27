@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/settings/SystemSettings.css";
+import "@/styles/settings/SystemSettings.css";
 
 // Import logos
 import captchaLogo from "../../assets/captcha.png";
