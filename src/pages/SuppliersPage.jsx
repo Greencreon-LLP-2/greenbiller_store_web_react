@@ -11,7 +11,10 @@ import {
   FiRotateCw,
   FiChevronDown,
 } from "react-icons/fi";
-import { FaFilePdf, FaFileExcel, FaUser, FaEdit } from "react-icons/fa"; // ✅ updated icons
+import { FaFilePdf, FaFileExcel, FaUser, FaEdit } from "react-icons/fa"; 
+import { jsPDF } from "jspdf"; 
+import autoTable from "jspdf-autotable"; 
+import * as XLSX from "xlsx";
 import "../styles/SuppliersPage.css";
 
 const SuppliersPage = () => {
@@ -19,11 +22,9 @@ const SuppliersPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // ✅ States for search & sorting
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Newest");
 
-  // ✅ Filter + Sort
   const filteredSuppliers = useMemo(() => {
     let data = suppliers.filter(
       (s) =>
@@ -45,7 +46,6 @@ const SuppliersPage = () => {
     return data;
   }, [suppliers, search, sortOrder]);
 
-  // ✅ Columns for DataTable
   const columns = [
     {
       name: "Supplier Name",
@@ -85,7 +85,6 @@ const SuppliersPage = () => {
             <FiEye />
           </button>
 
-          {/* Edit */}
           <button
             className="sup-btn-icon sup-edit"
             onClick={() => alert(`Edit supplier: ${row.name}`)}
@@ -93,9 +92,6 @@ const SuppliersPage = () => {
             <FaEdit />
           </button>
 
-
-
-          {/* Delete */}
           <button
             className="sup-btn-icon sup-danger"
             onClick={() => dispatch(deleteSupplier(row.id))}
@@ -107,55 +103,72 @@ const SuppliersPage = () => {
     },
   ];
 
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(filteredSuppliers);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Suppliers");
+    XLSX.writeFile(workbook, "suppliers.xlsx");
+  };
+
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Supplier List", 14, 16);
+    autoTable(doc, {
+      startY: 20,
+      head: [["Name", "Code", "Email", "Phone", "Country"]],
+      body: filteredSuppliers.map((s) => [
+        s.name,
+        s.code,
+        s.email,
+        s.phone,
+        s.country,
+      ]),
+    });
+    doc.save("suppliers.pdf");
+  };
+
   return (
     <div className="sup-page">
-      {/* 🔹 Page Header */}
-      <div className="sup-header">
+            <div className="sup-header">
         <div>
           <h4>Supplier List</h4>
           <p>Manage Your Supplier</p>
         </div>
-       <div className="sup-header-actions">
-  {/* PDF & Excel */}
-  <button className="sup-btn-icon sup-pdf">
-    <FaFilePdf />
-  </button>
-  <button className="sup-btn-icon sup-excel">
-    <FaFileExcel />
-  </button>
+        <div className="sup-header-actions">
+          <button className="sup-btn-icon sup-pdf" onClick={exportToPDF}>
+            <FaFilePdf />
+          </button>
+          <button className="sup-btn-icon sup-excel" onClick={exportToExcel}>
+            <FaFileExcel />
+          </button>
 
-  {/* Print */}
-  <button className="sup-btn-print">
-    Print
-  </button>
+          <button className="sup-btn-print" onClick={() => window.print()}>
+            Print
+          </button>
 
-  {/* Refresh */}
-  <button className="sup-btn-icon sup-refresh">
-    <FiRotateCw />
-  </button>
+          <button
+            className="sup-btn-icon sup-refresh"
+            onClick={() => window.location.reload()}
+          >
+            <FiRotateCw />
+          </button>
 
-  {/* Dropdown */}
-  <button className="sup-btn-icon">
-    <FiChevronDown />
-  </button>
-
-  {/* Add Supplier */}
-  <button
-    className="sup-btn-primary"
-    onClick={() => navigate("/suppliers/add")}
-  >
-    + Add New Supplier
-  </button>
-</div>
-
+          <button className="sup-btn-icon">
+            <FiChevronDown />
+          </button>
+          <button
+            className="sup-btn-primary"
+            onClick={() => navigate("/suppliers/add")}
+          >
+            + Add New Supplier
+          </button>
+        </div>
       </div>
 
-      {/* Data Table */}
+   
       <div className="sup-card">
         <div className="sup-card-body">
-          {/* 🔍 Search & Filter Controls */}
           <div className="sup-filters">
-            {/* Search */}
             <div className="sup-search-box">
               <FiSearch className="sup-search-icon" />
               <input
@@ -166,7 +179,6 @@ const SuppliersPage = () => {
               />
             </div>
 
-            {/* Filters */}
             <div className="sup-filter-actions">
               <button className="sup-btn-filter">
                 <FiFilter />
@@ -182,7 +194,6 @@ const SuppliersPage = () => {
             </div>
           </div>
 
-          {/* Table */}
           <DataTable
             columns={columns}
             data={filteredSuppliers}
