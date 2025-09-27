@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "@/styles/settings/SystemSettings.css";
 
 // Import logos
-import captchaLogo from "../assets/captcha.png";
-import analyticsLogo from "../assets/analytics.png";
-import adsenseLogo from "../assets/adsense.png";
-import mapLogo from "../assets/map.png";
+import captchaLogo from "@assets/captcha.png";
+import analyticsLogo from "@assets/analytics.png";
+import adsenseLogo from "@assets/adsense.png";
+import mapLogo from "@assets/map.png";
 
 const integrations = [
   {
