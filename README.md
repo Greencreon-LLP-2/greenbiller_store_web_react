@@ -46,7 +46,7 @@ Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 ## Authentication Flow
 
-- The app currently uses **mock data** for login authentication.
+- The app currently uses **mock data** for login authentication.: User email : test@example.com , Password : 123456
 - Upon successful login, the mock user ID and token are saved to `localStorage`.
 - This token is used for session validation and route protection.
 - **IMPORTANT:** When integrating with your backend, update the authentication logic to use a proper session token (e.g., JWT) issued by the backend.
